@@ -27,7 +27,8 @@ public class Testing : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            GameObject obj = GameSystem.GetGameObjectByMouse("Interactable");
+            Debug.Log(obj.name);
         }
     }
 }
