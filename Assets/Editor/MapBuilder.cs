@@ -199,14 +199,15 @@ public class MapBuilder : EditorWindow
             foreach (Transform gridTransform in map.transform)
             {
                 mapDataList.mapDataList[numOfTheMap].gridDataList.Add(
-                new TRpgMap.Grid(GetGridX(gridTransform), GetGridZ(gridTransform), GetGridY(gridTransform), true, gridTransform.name));
+                new TRpgMap.Grid(GetGridX(gridTransform), GetGridZ(gridTransform), GetGridY(gridTransform), true, gridTransform.name.Replace("(Clone)", "")));
                 int x = GetGridX(gridTransform);
                 int z = GetGridZ(gridTransform);
                 int height = GetGridY(gridTransform);
                 string gridName = gridTransform.name;
-                gridArray.gridArray[x, z] = new TRpgMap.Grid(x, z, height, true, gridName);
+                gridArray.gridArray[x - (int)startPos.transform.position.x, z - (int)startPos.transform.position.z] = new TRpgMap.Grid(x, z, height, true, gridName);
             }
             string mdl = JsonUtility.ToJson(mapDataList);
+            SaveSystem.SaveMap(mapDataListPath, mdl);
             SaveSystem.SaveMapData(gridArray);
             messageType = MessageType.None;
             debugText = "Map Saved";
@@ -254,7 +255,8 @@ public class MapBuilder : EditorWindow
                 try
                 {
                     //GameObject obj = Resources.Load("Prefabs/Map/Cube") as GameObject;
-                    Instantiate(Resources.Load("Map/Cube", typeof(GameObject)), data.GetPos(), new Quaternion(), map.transform);
+                    GameObject clone = (GameObject)Instantiate(Resources.Load("Map/" + data.gridName, typeof(GameObject)), data.GetPos(), new Quaternion(), map.transform);
+                    clone.name = data.gridName;
                 }
                 catch (Exception e)
                 {
@@ -307,5 +309,30 @@ public class MapBuilder : EditorWindow
     public int GetGridY(Transform obj)
     {
         return (int)obj.position.y / TRpgMap.Grid.cellSizeY;
+    }
+
+    [MenuItem("TRPG/CreateGround")]
+    static void CreateGround()
+    {
+        Transform startPos, endPos, map;
+        startPos = GameObject.Find("MapStartPos").transform;
+        endPos = GameObject.Find("MapEndPos").transform;
+        map = GameObject.Find("Map").transform;
+        if (startPos == null || endPos == null || map == null)
+        {
+            Debug.Log("StartPos OR EndPos OR Map Not Found");
+            return;
+        }
+        for (int i = map.transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(map.transform.GetChild(i).gameObject);
+        }
+        for (int x = (int)startPos.position.x; x <= (int)endPos.position.x; x += 2)
+        {
+            for (int z = (int)startPos.position.z; z <= (int)endPos.position.z; z += 2)
+            {
+                Instantiate(Resources.Load("Map/Ground1", typeof(GameObject)), new Vector3(x, 0, z), new Quaternion(), map);
+            }
+        }
     }
 }

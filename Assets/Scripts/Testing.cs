@@ -28,7 +28,22 @@ public class Testing : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject obj = GameSystem.GetGameObjectByMouse("Interactable");
-            Debug.Log(obj.name);
+        }
+        if(Input.GetAxis("Horizontal") == 1)
+        {
+            Camera.main.transform.position += Vector3.up;
+        }
+        if(Input.GetAxis("Horizontal") == -1)
+        {
+            Camera.main.transform.position += Vector3.down;
+        }
+        if(Input.GetAxis("Vertical") == 1)
+        {
+            Camera.main.transform.position += Vector3.right;
+        }
+        if(Input.GetAxis("Vertical") == -1)
+        {
+            Camera.main.transform.position += Vector3.left;
         }
     }
 }

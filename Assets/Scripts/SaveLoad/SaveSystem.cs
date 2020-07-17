@@ -8,6 +8,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem
 {
+    public static void SaveMap(string path,string json)
+    {
+        StreamWriter stream = new StreamWriter(path);
+        stream.Write(json);
+        stream.Close();
+    }
+
     public static void SaveMapData(GridArray gridArray)
     {
         BinaryFormatter formatter = new BinaryFormatter();
