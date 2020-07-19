@@ -200,12 +200,14 @@ public class MapBuilder : EditorWindow
             {
                 mapDataList.mapDataList[numOfTheMap].gridDataList.Add(
                 new TRpgMap.Grid(GetGridX(gridTransform), GetGridZ(gridTransform), GetGridY(gridTransform), true, gridTransform.name.Replace("(Clone)", "")));
-                int x = GetGridX(gridTransform);
-                int z = GetGridZ(gridTransform);
+                int x = GetGridX(gridTransform) - (int)startPos.transform.position.x / TRpgMap.Grid.cellSizeXZ;
+                int z = GetGridZ(gridTransform) - (int)startPos.transform.position.z / TRpgMap.Grid.cellSizeXZ;
                 int height = GetGridY(gridTransform);
                 string gridName = gridTransform.name;
-                gridArray.gridArray[x - (int)startPos.transform.position.x, z - (int)startPos.transform.position.z] = new TRpgMap.Grid(x, z, height, true, gridName);
+                Debug.Log("Name : " + gridName + ",Pos : X = " + x + " , Z = " + z);
+                gridArray.gridArray[x, z] = new TRpgMap.Grid(x, z, height, true, gridName);
             }
+            //Debug.Log(gridArray.Width + " , " + gridArray.Height);
             string mdl = JsonUtility.ToJson(mapDataList);
             SaveSystem.SaveMap(mapDataListPath, mdl);
             SaveSystem.SaveMapData(gridArray);

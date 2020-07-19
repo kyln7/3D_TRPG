@@ -18,7 +18,7 @@ public class Testing : MonoBehaviour
         }
         foreach (var grid in mapData.gridArray)
         {
-            Debug.Log(grid.gridName);
+            Debug.Log(grid.ToString());
         }
     }
 

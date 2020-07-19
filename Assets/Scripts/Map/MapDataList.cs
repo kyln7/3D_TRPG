@@ -43,8 +43,8 @@ namespace TRpgMap
             zStart = (int)startPos.z;
             xEnd = (int)endPos.x;
             zEnd = (int)endPos.z;
-            Width = xEnd - xStart + 1;
-            Height = zEnd - zStart + 1;
+            Width = (xEnd - xStart) / Grid.cellSizeXZ + 1;
+            Height = (zEnd - zStart) / Grid.cellSizeXZ + 1;
             if (xEnd >= xStart && zEnd >= zStart)
             {
                 gridArray = new Grid[Width, Height];
@@ -94,6 +94,7 @@ namespace TRpgMap
         public const int cellSizeY = 1;
         public string gridName;
 
+        //new a Grid that x,z are the array index
         public Grid(int x, int z, int height, bool canMove, string gridName)
         {
             this.x = x;
@@ -102,9 +103,15 @@ namespace TRpgMap
             this.canMove = canMove;
             this.gridName = gridName;
         }
+        //return real x,y,z in Unity
         public Vector3 GetPos()
         {
             return new Vector3(x * cellSizeXZ, height * cellSizeY, z * cellSizeXZ);
+        }
+        //override ToString
+        public override string ToString()
+        {
+            return "Name : " + gridName + ",Pos : X = " + x + " , Z = " + z + " , CanMove = " + canMove;
         }
     }
 }
