@@ -204,7 +204,16 @@ public class MapBuilder : EditorWindow
                 int z = GetGridZ(gridTransform);
                 int height = GetGridY(gridTransform);
                 string gridName = gridTransform.name;
-                gridArray.gridArray[x - (int)startPos.transform.position.x, z - (int)startPos.transform.position.z] = new TRpgMap.Grid(x, z, height, true, gridName);
+                if (gridTransform.CompareTag("canMove"))
+                {
+                    gridArray.gridArray[(x - (int)startPos.transform.position.x) / TRpgMap.Grid.cellSizeXZ, (z - (int)startPos.transform.position.z) / TRpgMap.Grid.cellSizeXZ]
+                     = new TRpgMap.Grid(x, z, height, true, gridName);
+                }
+                else
+                {
+                    gridArray.gridArray[(x - (int)startPos.transform.position.x) / TRpgMap.Grid.cellSizeXZ, (z - (int)startPos.transform.position.z) / TRpgMap.Grid.cellSizeXZ]
+                     = new TRpgMap.Grid(x, z, height, false, gridName);
+                }
             }
             string mdl = JsonUtility.ToJson(mapDataList);
             SaveSystem.SaveMap(mapDataListPath, mdl);
@@ -298,17 +307,17 @@ public class MapBuilder : EditorWindow
     //return the normailized x value of the gameobject
     public int GetGridX(Transform obj)
     {
-        return (int)obj.position.x / TRpgMap.Grid.cellSizeXZ;
+        return (int)obj.position.x;
     }
     //return the normailized z value of the gameobject
     public int GetGridZ(Transform obj)
     {
-        return (int)obj.position.z / TRpgMap.Grid.cellSizeXZ;
+        return (int)obj.position.z;
     }
     //return the normailized y value of the gameobject
     public int GetGridY(Transform obj)
     {
-        return (int)obj.position.y / TRpgMap.Grid.cellSizeY;
+        return (int)obj.position.y;
     }
 
     [MenuItem("TRPG/CreateGround")]

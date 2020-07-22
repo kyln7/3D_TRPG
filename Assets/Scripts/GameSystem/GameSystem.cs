@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TRpgMap;
 
 public class GameSystem : MonoBehaviour
 {
+    //通过鼠标点击获取对象，layerMask决定要获取的对象的layer是哪一个
     public static GameObject GetGameObjectByMouse(string layerMask)
     {
         GameObject res;
@@ -18,5 +20,16 @@ public class GameSystem : MonoBehaviour
             return res;
         }
         return null;
+    }
+
+    public static void SetMapItem(GameObject ItemRoot,GridArray gridArray)
+    {
+        int x,z;
+        foreach(Transform item in ItemRoot.transform)
+        {
+            x = (int)item.position.x;
+            z = (int)item.position.z;
+            gridArray.SetGridUnderObj(item.GetComponent<Item>());
+        }
     }
 }
