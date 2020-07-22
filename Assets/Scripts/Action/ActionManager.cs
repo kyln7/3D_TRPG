@@ -21,11 +21,11 @@ public class ActionManager : MonoBehaviour
             {
                 curAction = actionQueue.Dequeue();
             }
-            else 
-                Debug.Log("Waiting for new Action");
+            // else 
+            //     Debug.Log("Waiting for new Action");
+                
         }
         else{
-            Debug.Log(curAction.ActionName);
             curAction.DoAction(gameObject);
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace TRpgMap
 {
+    //地图数据列表:这不是地图数组，而是地图模型的数据
     [Serializable]
     public class MapDataList
     {
@@ -22,6 +23,7 @@ namespace TRpgMap
         }
     }
 
+    //地图数据：程序通过获取这个类的实例中的地图数组gridArray来进行一些操作
     [Serializable]
     public class GridArray
     {
@@ -67,15 +69,13 @@ namespace TRpgMap
             zEnd = 0;
             gridArray = new Grid[0, 0];
         }
-
-
-        public void SetGrid(int x, int z, Grid grid)
+        //通过obj获取其在数组内的位置:一维数组pos[x,z] 和 GameSystem的接口GetGameObjectByMouse一起使用
+        public int[] GetGridPos(GameObject obj)
         {
-            gridArray[x, z] = grid;
-        }
-        public Grid GetGrid(int x, int z)
-        {
-            return gridArray[x, z];
+            int x, z;
+            x = (int)(obj.transform.position.x - xStart) / Grid.cellSizeXZ;
+            z = (int)(obj.transform.position.z - zStart) / Grid.cellSizeXZ;
+            return new int[2] { x, z };
         }
     }
 

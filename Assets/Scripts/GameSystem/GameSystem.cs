@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
+    //通过鼠标点击获取对象，layerMask决定要获取的对象的layer是哪一个
     public static GameObject GetGameObjectByMouse(string layerMask)
     {
         GameObject res;

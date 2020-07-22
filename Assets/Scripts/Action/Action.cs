@@ -20,11 +20,11 @@ namespace TRpgAction
 
         public override void DoAction(GameObject obj)
         {
-            Debug.Log("Doing");
+            //Debug.Log("Doing");
             if ((endPos - obj.transform.position).magnitude > 1f)
             {
                 //TODO
-                Debug.Log("Mowing");
+                //Debug.Log("Mowing");
                 obj.transform.Translate((endPos - obj.transform.position).normalized * Time.deltaTime * 10f);
             }
             else isDone = true;

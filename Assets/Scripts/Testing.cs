@@ -24,8 +24,8 @@ public class Testing : MonoBehaviour
         {
             Debug.Log(grid.ToString());
         }
-        Dialogue dialogue = SaveSystem.LoadDialogue("Test","test");
-        foreach(string text in dialogue.sentences)
+        Dialogue dialogue = SaveSystem.LoadDialogue("Test", "test");
+        foreach (string text in dialogue.sentences)
         {
             Debug.Log(text);
         }
@@ -38,7 +38,7 @@ public class Testing : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject obj = GameSystem.GetGameObjectByMouse("Interactable");
-            Debug.Log(obj.name);
+            Debug.Log(mapData.GetGridPos(obj)[0] + " , " + mapData.GetGridPos(obj)[1]);
             actionManager.AddAction(new MoveAction(obj.transform.position));
         }
     }
