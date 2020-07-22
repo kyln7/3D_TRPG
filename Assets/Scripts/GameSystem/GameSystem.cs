@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TRpgMap;
 
 public class GameSystem : MonoBehaviour
 {
@@ -19,5 +20,16 @@ public class GameSystem : MonoBehaviour
             return res;
         }
         return null;
+    }
+
+    public static void SetMapItem(GameObject ItemRoot,GridArray gridArray)
+    {
+        int x,z;
+        foreach(Transform item in ItemRoot.transform)
+        {
+            x = (int)item.position.x;
+            z = (int)item.position.z;
+            gridArray.SetGridUnderObj(item.GetComponent<Item>());
+        }
     }
 }

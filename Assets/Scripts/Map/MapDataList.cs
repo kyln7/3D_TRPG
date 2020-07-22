@@ -77,26 +77,42 @@ namespace TRpgMap
             z = (int)(obj.transform.position.z - zStart) / Grid.cellSizeXZ;
             return new int[2] { x, z };
         }
+        //设置item下的grid
+        public void SetGridUnderObj(Item obj)
+        {
+            int x, z;
+            x = (int)(obj.transform.position.x - xStart) / Grid.cellSizeXZ;
+            z = (int)(obj.transform.position.z - zStart) / Grid.cellSizeXZ;
+            gridArray[x, z].canMove = false;
+            gridArray[x, z].hasItem = true;
+        }
     }
 
     [Serializable]
     public class Grid
     {
-        //
+        //在世界坐标中的X位置
         public int x;
+        //在世界坐标中的Z位置
         public int z;
-        public int height;
+        //该格子的高度
+        public float height;
+        //能否通行
         public bool canMove;
+        //有无物品
         public bool hasItem;
+        //温度
         public int temperature;
-        //阻挡度
+        //阻挡度（在能够通行的条件下）
         public int delay;
+        //格子的长宽
         public const int cellSizeXZ = 2;
+        //格子的高度
         public const int cellSizeY = 1;
         public string gridName;
 
         //new a Grid that x,z are the array index
-        public Grid(int x, int z, int height, bool canMove, string gridName)
+        public Grid(int x, int z, float height, bool canMove, string gridName)
         {
             this.x = x;
             this.z = z;

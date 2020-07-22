@@ -12,6 +12,7 @@ public class Testing : MonoBehaviour
     private GridArray mapData;
     public Text T;
     public ActionManager actionManager;
+    public GameObject Items;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +21,15 @@ public class Testing : MonoBehaviour
         {
             Debug.Log("mapData Not Found");
         }
-        foreach (var grid in mapData.gridArray)
-        {
-            Debug.Log(grid.ToString());
-        }
         Dialogue dialogue = SaveSystem.LoadDialogue("Test", "test");
         foreach (string text in dialogue.sentences)
         {
             Debug.Log(text);
+        }
+        GameSystem.SetMapItem(Items,mapData);
+        foreach (var grid in mapData.gridArray)
+        {
+            Debug.Log(grid.ToString());
         }
     }
 
