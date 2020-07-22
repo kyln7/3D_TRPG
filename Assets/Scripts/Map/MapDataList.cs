@@ -52,7 +52,7 @@ namespace TRpgMap
                 {
                     for (int z = 0; z < Height; z++)
                     {
-                        gridArray[x, z] = new Grid(x, z, 0, false, "null");
+                        gridArray[x, z] = new Grid(xStart + x * Grid.cellSizeXZ, zStart + z * Grid.cellSizeXZ, 0, false, "null");
                     }
                 }
             }
@@ -82,6 +82,7 @@ namespace TRpgMap
     [Serializable]
     public class Grid
     {
+        //
         public int x;
         public int z;
         public int height;
@@ -106,7 +107,7 @@ namespace TRpgMap
         //return real x,y,z in Unity
         public Vector3 GetPos()
         {
-            return new Vector3(x * cellSizeXZ, height * cellSizeY, z * cellSizeXZ);
+            return new Vector3(x, height, z);
         }
         //override ToString
         public override string ToString()
