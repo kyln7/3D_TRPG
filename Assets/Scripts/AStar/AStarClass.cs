@@ -48,14 +48,14 @@ public class AStarClass
     //初始化网格
     void InitGrid()
     {
-        mPointGrid = new AStarPoint[map.GetLength(0),map.GetLength(1)];
+        mPointGrid = new AStarPoint[map.GetLength(0), map.GetLength(1)];
 
         for (int i = 0; i < mPointGrid.GetLength(0); i++)
         {
             for (int j = 0; j < mPointGrid.GetLength(1); j++)
             {
                 mPointGrid[i, j] = new AStarPoint(i, j);
-                if (startPos.x==i && startPos.y == j)
+                if (startPos.x == i && startPos.y == j)
                 {
                     mStartPoint = mPointGrid[i, j];
                 }
@@ -64,7 +64,7 @@ public class AStarClass
                     mEndPoint = mPointGrid[i, j];
                 }
                 //1代表障碍物
-                if (!canCrossTerrain && map[i, j].delay!=0)
+                if (!canCrossTerrain && map[i, j].canMove == false)
                 {
                     mPointGrid[i, j].mIsObstacle = true;
                 }
@@ -102,7 +102,7 @@ public class AStarClass
         tmp.Add(tmp_p);
 
         Debug.Log(tmp.Count);
-        for (int i = tmp.Count-1; i > -1; i--)
+        for (int i = tmp.Count - 1; i > -1; i--)
         {
             result.Add(new Vector2(tmp[i].mPosition.x, tmp[i].mPosition.y));
         }
@@ -328,7 +328,7 @@ public class AStarPoint
     public bool mIsObstacle { get; set; }
     public AStarPoint(int positionX, int positionY)
     {
-        mPosition = new Vector2(positionX,positionY);
+        mPosition = new Vector2(positionX, positionY);
         mParentPoint = null;
         mIsObstacle = false;
     }

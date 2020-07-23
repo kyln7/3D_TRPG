@@ -7,41 +7,37 @@ using Grid = TRpgMap.Grid;
 public class testmove : MonoBehaviour
 {
     public GameObject moveObj;
-    Vector2 startPos,endPos;
+    Vector2 startPos, endPos;
 
     private GridArray mapData;
-    int i=0;
+    int i = 0;
     // Start is called before the first frame update
     void Start()
     {
-        startPos = Vector2.zero;
-
-        moveObj.transform.position = Vector3.zero;
-        moveObj.transform.SetParent(GameObject.Find("Map").transform);
-        moveObj.transform.position = new Vector3(startPos.x, 3, startPos.y);
-
         mapData = SaveSystem.LoadMapData();
+        startPos = new Vector2(mapData.GetGridPos(moveObj)[0], mapData.GetGridPos(moveObj)[1]);
+        Debug.Log(startPos.x + " , " + startPos.y);
 
-        for (int k = 0; k < 20; k++)
-        {
-            mapData.gridArray[20, k].delay = 1;
-            GameObject tmp = Instantiate(moveObj);
-            tmp.transform.SetParent(GameObject.Find("Map").transform);
-            moveObj.transform.position = new Vector3(mapData.gridArray[20, k].x, 3, mapData.gridArray[20, k].z);
-        }
-        for (int k = 25; k < 40; k++)
-        {
-            mapData.gridArray[20, k].delay = 1;
-            GameObject tmp = Instantiate(moveObj);
-            tmp.transform.SetParent(GameObject.Find("Map").transform);
-            moveObj.transform.position = new Vector3(mapData.gridArray[20, k].x, 3, mapData.gridArray[20, k].z);
-        }
+        // for (int k = 0; k < 20; k++)
+        // {
+        //     mapData.gridArray[20, k].delay = 1;
+        //     GameObject tmp = Instantiate(moveObj);
+        //     tmp.transform.SetParent(GameObject.Find("Map").transform);
+        //     moveObj.transform.position = new Vector3(mapData.gridArray[20, k].x, 3, mapData.gridArray[20, k].z);
+        // }
+        // for (int k = 25; k < 40; k++)
+        // {
+        //     mapData.gridArray[20, k].delay = 1;
+        //     GameObject tmp = Instantiate(moveObj);
+        //     tmp.transform.SetParent(GameObject.Find("Map").transform);
+        //     moveObj.transform.position = new Vector3(mapData.gridArray[20, k].x, 3, mapData.gridArray[20, k].z);
+        // }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("waiting for press");
+        //Debug.Log("waiting for press");
         if (Input.GetMouseButtonDown(0))
         {
             GameObject obj = GameSystem.GetGameObjectByMouse("Interactable");
@@ -59,7 +55,7 @@ public class testmove : MonoBehaviour
 
     IEnumerator timer(List<Vector2> path)
     {
-        while(i < path.Count)
+        while (i < path.Count)
         {
             yield return new WaitForSeconds(0.1f);
 
