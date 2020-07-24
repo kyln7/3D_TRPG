@@ -39,7 +39,7 @@ public class Testing : MonoBehaviour
         T.text = TimeSystem.ShowTime();
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject obj = GameSystem.GetGameObjectByMouse("Interactable");
+            GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
             Debug.Log(mapData.GetGridPos(obj)[0] + " , " + mapData.GetGridPos(obj)[1]);
             actionManager.AddAction(new MoveAction(obj.transform.position));
         }
