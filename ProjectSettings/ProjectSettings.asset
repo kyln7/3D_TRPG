@@ -668,6 +668,10 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 1
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -681,10 +685,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 9b22a891-c5aa-4b18-847f-cebead8cec2f
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: 3D_TRPG
+  organizationId: 637b4d68-09e4-4af7-b006-3be06235737e
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
