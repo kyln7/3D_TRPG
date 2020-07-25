@@ -12,8 +12,10 @@ public class SkillManager : MonoBehaviour
     public bool Hit;
     // Start is called before the first frame update
     void Start()
-    {
-        if (Hit) skills.Add(new Hit());
+    {   
+        skills = new List<Skill>();
+        activeSkills = new List<Skill>();
+        if (Hit) skills.Add(new Hit(gameObject));
     }
 
     // Update is called once per frame
@@ -26,9 +28,9 @@ public class SkillManager : MonoBehaviour
     public List<Skill> GetActiveSkills()
     {
         activeSkills.Clear();
-        foreach(Skill skill in skills)
+        foreach (Skill skill in skills)
         {
-            if(skill.IsActive()) activeSkills.Add(skill);
+            if (skill.IsActive()) activeSkills.Add(skill);
         }
         return activeSkills;
     }

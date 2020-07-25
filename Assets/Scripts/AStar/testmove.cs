@@ -17,30 +17,14 @@ public class testmove : MonoBehaviour
         mapData = SaveSystem.LoadMapData();
         startPos = new Vector2(mapData.GetGridPos(moveObj)[0], mapData.GetGridPos(moveObj)[1]);
         Debug.Log(startPos.x + " , " + startPos.y);
-
-        // for (int k = 0; k < 20; k++)
-        // {
-        //     mapData.gridArray[20, k].delay = 1;
-        //     GameObject tmp = Instantiate(moveObj);
-        //     tmp.transform.SetParent(GameObject.Find("Map").transform);
-        //     moveObj.transform.position = new Vector3(mapData.gridArray[20, k].x, 3, mapData.gridArray[20, k].z);
-        // }
-        // for (int k = 25; k < 40; k++)
-        // {
-        //     mapData.gridArray[20, k].delay = 1;
-        //     GameObject tmp = Instantiate(moveObj);
-        //     tmp.transform.SetParent(GameObject.Find("Map").transform);
-        //     moveObj.transform.position = new Vector3(mapData.gridArray[20, k].x, 3, mapData.gridArray[20, k].z);
-        // }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("waiting for press");
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject obj = GameSystem.GetGameObjectByMouse("Interactable");
+            GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
             if (obj == null) return;
             endPos = new Vector2(mapData.GetGridPos(obj)[0], mapData.GetGridPos(obj)[1]);
 

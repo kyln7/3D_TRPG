@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TRpgMap;
+using Grid = TRpgMap.Grid;
 
 public class GameSystem : MonoBehaviour
 {
@@ -44,9 +45,9 @@ public class GameSystem : MonoBehaviour
     public static bool HasObjectOnGrid(Vector2Int detectPos, string layerMask)
     {
         int layer = LayerMask.GetMask(layerMask);
-        RaycastHit raycast;
-        Physics.Raycast(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up, out raycast, Mathf.Infinity, layer);
-        if (raycast.transform.gameObject != null)
+        RaycastHit hit;
+        Debug.DrawRay(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up * 100f, Color.red, 100f);
+        if (Physics.Raycast(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up, out hit, Mathf.Infinity, layer))
         {
             return true;
         }
@@ -58,8 +59,8 @@ public class GameSystem : MonoBehaviour
     {
         int layer = LayerMask.GetMask(layerMask);
         RaycastHit raycast;
-        Physics.Raycast(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up, out raycast, Mathf.Infinity, layer);
-        if (raycast.transform.gameObject != null)
+        Debug.DrawRay(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up * 100f, Color.red, 100f);
+        if (Physics.Raycast(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up, out raycast, Mathf.Infinity, layer))
         {
             return raycast.transform.gameObject;
         }
@@ -70,16 +71,16 @@ public class GameSystem : MonoBehaviour
     public static List<Vector2Int> GetRange(Vector2Int pos, int range)
     {
         List<Vector2Int> res = new List<Vector2Int>();
-        int ls = pos.x - range;
-        int re = pos.x + range;
-        int ds = pos.y - range;
-        int ue = pos.y + range;
-        for (int x = ls; x <= re; x++)
+        int ls = pos.x - range * Grid.cellSizeXZ;
+        int re = pos.x + range * Grid.cellSizeXZ;
+        int ds = pos.y - range * Grid.cellSizeXZ;
+        int ue = pos.y + range * Grid.cellSizeXZ;
+        for (int x = ls; x <= re; x += Grid.cellSizeXZ)
         {
-            for (int z = ds; z <= ue; z++)
+            for (int z = ds; z <= ue; z += Grid.cellSizeXZ)
             {
                 Vector2Int node = new Vector2Int(x, z);
-                if ((int)Mathf.Abs(pos.x - x) + (int)Mathf.Abs(pos.y - z) <= range && IsGridInMap(node))
+                if ((int)Mathf.Abs(pos.x - x) + (int)Mathf.Abs(pos.y - z) <= range * Grid.cellSizeXZ && IsGridInMap(node))
                     res.Add(node);
             }
         }
@@ -88,9 +89,10 @@ public class GameSystem : MonoBehaviour
     //检测给出的位置序列中，是否有需要查找的对象
     public static bool HasObjectOnGrids(List<Vector2Int> detectPos, string layerMask)
     {
-        foreach(Vector2Int pos in detectPos)
+        foreach (Vector2Int pos in detectPos)
         {
-            if(HasObjectOnGrid(pos,layerMask)){
+            if (HasObjectOnGrid(pos, layerMask))
+            {
                 return true;
             }
         }

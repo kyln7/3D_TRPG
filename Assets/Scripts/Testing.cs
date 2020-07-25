@@ -21,12 +21,6 @@ public class Testing : MonoBehaviour
         {
             Debug.Log("mapData Not Found");
         }
-        /*
-        Dialogue dialogue = SaveSystem.LoadDialogue("Test", "test");
-        foreach (string text in dialogue.sentences)
-        {
-            Debug.Log(text);
-        }*/
         GameSystem.SetMapItem(Items,mapData);
         foreach (var grid in mapData.gridArray)
         {
