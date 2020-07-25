@@ -22,14 +22,78 @@ public class GameSystem : MonoBehaviour
         return null;
     }
 
-    public static void SetMapItem(GameObject ItemRoot,GridArray gridArray)
+    //设置含有Item的格子
+    public static void SetMapItem(GameObject ItemRoot, GridArray gridArray)
     {
-        int x,z;
-        foreach(Transform item in ItemRoot.transform)
+        int x, z;
+        foreach (Transform item in ItemRoot.transform)
         {
             x = (int)item.position.x;
             z = (int)item.position.z;
             gridArray.SetGridUnderObj(item.GetComponent<Item>());
         }
+    }
+    //判断格子是否在当前地图内
+    public static bool IsGridInMap(Vector2Int pos)
+    {
+        GridArray map = GameControl.Map;
+        return (pos.x <= map.xEnd && pos.x >= map.xStart && pos.y <= map.zEnd && pos.y >= map.zStart) ? true : false;
+    }
+
+    //检测当前格子上是否存在指定的对象
+    public static bool HasObjectOnGrid(Vector2Int detectPos, string layerMask)
+    {
+        int layer = LayerMask.GetMask(layerMask);
+        RaycastHit raycast;
+        Physics.Raycast(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up, out raycast, Mathf.Infinity, layer);
+        if (raycast.transform.gameObject != null)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    //获取当前格子上指定的对象
+    public static GameObject GetObjectOnGrid(Vector2Int detectPos, string layerMask)
+    {
+        int layer = LayerMask.GetMask(layerMask);
+        RaycastHit raycast;
+        Physics.Raycast(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up, out raycast, Mathf.Infinity, layer);
+        if (raycast.transform.gameObject != null)
+        {
+            return raycast.transform.gameObject;
+        }
+        else return null;
+    }
+
+    //得到一个格子的扩张的范围
+    public static List<Vector2Int> GetRange(Vector2Int pos, int range)
+    {
+        List<Vector2Int> res = new List<Vector2Int>();
+        int ls = pos.x - range;
+        int re = pos.x + range;
+        int ds = pos.y - range;
+        int ue = pos.y + range;
+        for (int x = ls; x <= re; x++)
+        {
+            for (int z = ds; z <= ue; z++)
+            {
+                Vector2Int node = new Vector2Int(x, z);
+                if ((int)Mathf.Abs(pos.x - x) + (int)Mathf.Abs(pos.y - z) <= range && IsGridInMap(node))
+                    res.Add(node);
+            }
+        }
+        return res;
+    }
+    //检测给出的位置序列中，是否有需要查找的对象
+    public static bool HasObjectOnGrids(List<Vector2Int> detectPos, string layerMask)
+    {
+        foreach(Vector2Int pos in detectPos)
+        {
+            if(HasObjectOnGrid(pos,layerMask)){
+                return true;
+            }
+        }
+        return false;
     }
 }

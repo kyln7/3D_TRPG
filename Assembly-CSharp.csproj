@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\Dialogue\button.cs" />
      <Compile Include="Assets\Scripts\Dialogue\utils\TypeEffect.cs" />
+     <Compile Include="Assets\Scripts\GameSystem\GameControl.cs" />
      <Compile Include="Assets\Scripts\GameSystem\GameSystem.cs" />
      <Compile Include="Assets\Scripts\Item\Item.cs" />
      <Compile Include="Assets\Scripts\Map\MapDataList.cs" />
