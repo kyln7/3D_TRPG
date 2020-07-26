@@ -7,15 +7,22 @@ using TRpgSkill;
 public class GameControl : MonoBehaviour
 {
     public static GridArray Map;
-    public SkillManager skillManager;
+    public GameObject player;
     void Start()
     {
         Map = SaveSystem.LoadMapData();
-        List<Skill> skills = skillManager.GetActiveSkills();
-        foreach (Skill skill in skills)
+        SkillManager skillManager = player.GetComponent<SkillManager>();
+        if (skillManager.isActiveAndEnabled)
         {
-            Debug.Log(skill.SkillName + " : " + skill.SkillInfo);
+            List<Skill> skills = skillManager.GetActiveSkills();
+            foreach (Skill skill in skills)
+            {
+                Debug.Log(skill.SkillName + " : " + skill.SkillInfo);
+                if (skill is Hit) Debug.Log("Skill is Hit");
+                if (skill is Throw) Debug.Log("Skill is Throw");
+            }
         }
+
     }
 
     // Update is called once per frame

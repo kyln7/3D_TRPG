@@ -10,12 +10,15 @@ public class SkillManager : MonoBehaviour
 
     [Label("殴打")]
     public bool Hit;
+    [Label("投掷")]
+    public bool Throw;
     // Start is called before the first frame update
     void Start()
-    {   
+    {
         skills = new List<Skill>();
         activeSkills = new List<Skill>();
         if (Hit) skills.Add(new Hit(gameObject));
+        if (Throw) skills.Add(new Throw(gameObject));
     }
 
     // Update is called once per frame
