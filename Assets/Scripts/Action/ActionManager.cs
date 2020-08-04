@@ -26,7 +26,7 @@ public class ActionManager : MonoBehaviour
                 
         }
         else{
-            curAction.DoAction(gameObject);
+            curAction.DoAction(GetComponent<Character>());
         }
     }
 

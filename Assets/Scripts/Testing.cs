@@ -36,7 +36,6 @@ public class Testing : MonoBehaviour
         {
             GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
             Debug.Log(mapData.GetGridPos(obj)[0] + " , " + mapData.GetGridPos(obj)[1]);
-            actionManager.AddAction(new MoveAction(obj.transform.position));
         }
     }
 }

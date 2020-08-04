@@ -13,6 +13,9 @@ namespace TRpgSkill
         private int range;
 
         public abstract bool IsActive();
+        public abstract void Use();
+        public abstract void Use(Character character);
+        public abstract void Use(Item item);
 
         public string SkillName { get => skillName; set => skillName = value; }
         public string SkillInfo { get => skillInfo; set => skillInfo = value; }
@@ -35,6 +38,24 @@ namespace TRpgSkill
             List<Vector2Int> nodes = GameSystem.GetRange(pos, Range);
             if (GameSystem.HasObjectOnGrids(nodes, "Npc")) return true;
             else return false;
+        }
+
+        public override void Use()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use(Character character)
+        {
+            //todo
+            //计算伤害--投骰子[GameControl.RollDice()]
+            //character.ReceiveDmg(character);
+            //character.Play("receiveDmg");
+        }
+
+        public override void Use(Item item)
+        {
+            throw new System.NotImplementedException();
         }
     }
 
@@ -62,6 +83,86 @@ namespace TRpgSkill
             List<Vector2Int> nodes = GameSystem.GetRange(pos, Range);
             if (GameSystem.HasObjectOnGrids(nodes, "Npc")) return true;
             else return false;
+        }
+
+        public override void Use()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use(Character character)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+
+    public class Defence : Skill
+    {
+
+        public Defence(GameObject owner)
+        {
+            Owner = owner;
+            SkillName = "防御";
+            SkillInfo = "摆出防御姿态";
+        }
+
+        public override bool IsActive()
+        {
+            //todo
+            //if(owner.character.receivingDmg)
+            //true
+            //false
+            return false;
+        }
+
+        public override void Use()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use(Character character)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+
+    public class Insight : Skill
+    {
+        public Insight(GameObject owner)
+        {
+            Owner = owner;
+            SkillName = "侦查";
+            SkillInfo = "侦查四周";
+        }
+
+        public override bool IsActive()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use(Character character)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use(Item item)
+        {
+            throw new System.NotImplementedException();
         }
     }
 

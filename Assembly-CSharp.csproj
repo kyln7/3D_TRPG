@@ -45,6 +45,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AI\Base.cs" />
+     <Compile Include="Assets\Scripts\AI\FSM\State.cs" />
+     <Compile Include="Assets\Scripts\AI\FSM\StateMachine.cs" />
      <Compile Include="Assets\Scripts\AI\InformationPool.cs" />
      <Compile Include="Assets\Scripts\AStar\AStarClass.cs" />
      <Compile Include="Assets\Scripts\AStar\testmove.cs" />

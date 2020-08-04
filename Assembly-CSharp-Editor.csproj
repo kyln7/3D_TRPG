@@ -320,9 +320,6 @@
  <Reference Include="ICSharpCode.NRefactory">
  <HintPath>F:/Unity3D Projects/3D_TRPG/Library/PackageCache/com.unity.render-pipelines.core@7.4.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
  </Reference>
- <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
- <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
- </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/Unity3D Projects/3D_TRPG/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>

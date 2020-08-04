@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TRpgMap;
 using TRpgSkill;
-
+using TRpgAction;
 public class GameControl : MonoBehaviour
 {
     public static GridArray Map;
@@ -28,6 +28,14 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
+            if (obj == null) return;
+            Vector2Int endPos = new Vector2Int(Map.GetGridPos(obj)[0], Map.GetGridPos(obj)[1]);
+            Character character = player.GetComponent<Character>();
+            character.walkPos = endPos;
+            character.Actions.Enqueue(new MoveAction(endPos));
+        }
     }
 }

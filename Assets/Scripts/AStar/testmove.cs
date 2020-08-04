@@ -32,7 +32,7 @@ public class testmove : MonoBehaviour
             List<Vector2> path = aStar.getPath();
             Debug.Log("start:" + aStar.startPos.ToString());
             Debug.Log("end:" + aStar.endPos.ToString());
-
+            
             StartCoroutine(timer(path));
         }
     }

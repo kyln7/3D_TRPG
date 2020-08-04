@@ -20869,8 +20869,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 384466499}
-  - component: {fileID: 384466500}
-  - component: {fileID: 384466501}
   - component: {fileID: 384466498}
   m_Layer: 0
   m_Name: GameControl
@@ -20906,31 +20904,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &384466500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384466497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e78f15551aadb164c9ec82f5da810865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &384466501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384466497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d597f4c2ceb4d714999f79b462b9a748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveObj: {fileID: 1716870825}
 --- !u!1 &389822978
 GameObject:
   m_ObjectHideFlags: 0
@@ -92218,7 +92191,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494f90f3c6b9caa478224b4d3784ef1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Map:
+    Width: 0
+    Height: 0
+    xStart: 0
+    zStart: 0
+    xEnd: 0
+    zEnd: 0
   Strenth: 46
+  animator: {fileID: 0}
+  attacking: 0
+  ReceivingDmg: 0
+  canMove: 1
+  curPos: {x: 0, y: 0}
+  walkPos: {x: 0, y: 0}
 --- !u!1 &1718065786
 GameObject:
   m_ObjectHideFlags: 0
