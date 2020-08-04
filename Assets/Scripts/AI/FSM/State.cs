@@ -27,7 +27,7 @@ namespace TrpgAI
     }
     enum EStateType
     {
-        Idel, Walk, Talk, Attack
+        Idel, Walk, Talk,
     }
     class IdelState : State
     {
@@ -41,14 +41,37 @@ namespace TrpgAI
             if (c.Actions.Count > 0)
             {
                 //todo
+                if (c.curAction is IdelAction)
+                {
+                    c.curAction.FinishAction(c);
+                }
                 c.GetAction();
                 if (c.curAction is MoveAction)
                 {
                     c.canMove = true;
                     return m_StateMachine.Transition((int)EStateType.Walk);
                 }
+                if (c.curAction is TalkAction)
+                {
+                    c.canMove = false;
+                    return m_StateMachine.Transition((int)EStateType.Talk);
+                }
             }
-            c.Idel(5);
+            else
+            {
+                if (c.curAction == null)
+                {
+                    c.curAction = new IdelAction();
+                } 
+                if (c.curAction.isDone)
+                {
+                    c.AddMoveAction();
+                }
+                else
+                {
+                    c.curAction.DoAction(c);
+                }
+            }
             return this;
         }
     }
@@ -61,7 +84,44 @@ namespace TrpgAI
         public override State Execute()
         {
             Character c = (Character)Agent;
-            if (c.walkPos == c.GetPos()) return m_StateMachine.Transition((int)EStateType.Idel);
+            if (c.Actions.Count > 0)
+            {
+                //todo
+                if (c.Actions.Peek() is TalkAction)
+                {
+                    c.curAction.FinishAction(c);
+                    c.canMove = false;
+                    c.GetAction();
+                    return m_StateMachine.Transition((int)EStateType.Talk);
+                }
+            }
+            if (c.curAction.isDone)
+            {
+                c.AddIdelAction();
+                return m_StateMachine.Transition((int)EStateType.Idel);
+            }
+            else
+            {
+                c.curAction.DoAction(c);
+            }
+            return this;
+        }
+    }
+
+    class TalkState : State
+    {
+        public TalkState()
+        {
+            StateType = (int)EStateType.Talk;
+        }
+        public override State Execute()
+        {
+            Character c = (Character)Agent;
+            if (c.curAction.isDone)
+            {
+                c.AddIdelAction();
+                return m_StateMachine.Transition((int)EStateType.Idel);
+            }
             else
             {
                 c.curAction.DoAction(c);

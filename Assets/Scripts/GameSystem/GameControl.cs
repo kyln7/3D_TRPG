@@ -30,12 +30,7 @@ public class GameControl : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
-            if (obj == null) return;
-            Vector2Int endPos = new Vector2Int(Map.GetGridPos(obj)[0], Map.GetGridPos(obj)[1]);
-            Character character = player.GetComponent<Character>();
-            character.walkPos = endPos;
-            character.Actions.Enqueue(new MoveAction(endPos));
+            player.GetComponent<Character>().AddTalkAction();
         }
     }
 }
