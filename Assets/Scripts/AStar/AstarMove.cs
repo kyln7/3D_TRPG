@@ -36,14 +36,10 @@ public class AStarMove
 
     public void SetPoints(Grid[,]map, Vector2 start, Vector2 end)
     {
-        if (aStar == null) { aStar = new AStarClass(map, start, end, false, false); }
-
-        aStar.map = map;
-        aStar.startPos = start;
-        aStar.endPos = end;
+        aStar = new AStarClass(map, start, end, false, false);
     }
 
-    public bool Move(GameObject gameObject, Grid[,] map, Vector2 start, Vector2 end)
+    public bool Move(GameObject gameObject, Grid[,] map, Vector2 start, Vector2 end, out Vector2 endPos)
     {
         if (!ifGetPath)
         {
@@ -54,8 +50,9 @@ public class AStarMove
         }
         else
         {
-            if (num == path.Count - 1)
+            if (num == path.Count)
             {
+                endPos = path[num - 1];
                 //初始化配置
                 ifGetPath = false;
                 num = 0;
@@ -64,13 +61,25 @@ public class AStarMove
                 return true;
             }
 
-
-            if (MoveStep(gameObject) == Status.Moved)
+            Status flag = MoveStep(gameObject);
+            if (flag == Status.Moved)
             {
                 num += 1;
             }
+            else if (flag == Status.Interrupt)
+            {
+                endPos = path[num - 1];
+                //初始化配置
+                ifGetPath = false;
+                num = 0;
+                path = null;
+
+                Debug.Log(flag);
+                return true;
+            }
         }
 
+        endPos = Vector2.zero;
         return false;
     }
 
@@ -80,11 +89,14 @@ public class AStarMove
         Vector3 s = gameObject.transform.position;
         Vector3 e = new Vector3(targetGrid.x, s.y, targetGrid.z);
 
-        if (GameSystem. new Vector2(e.x,e.z))
+        if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Npc"))
+        {
+            return Status.Interrupt;
+        }
 
         moveVec = e - s;
         if (moveVec.magnitude < 0.05f) return Status.Moved;
-        Debug.Log("Length: " + moveVec.magnitude.ToString("0.0000"));
+        //Debug.Log("Length: " + moveVec.magnitude.ToString("0.0000"));
         moveVec = moveVec.normalized;
 
         //Debug.Log("Moving: " + s.ToString("0.0000") + " to " + e.ToString("0.0000"));
