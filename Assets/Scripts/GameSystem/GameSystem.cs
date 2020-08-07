@@ -15,7 +15,7 @@ public class GameSystem : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red, 10f);
-            Debug.Log("Hit Name: " + hit.transform.name + " , Hit Position: " + hit.transform.position.ToString());
+            //Debug.Log("Hit Name: " + hit.transform.name + " , Hit Position: " + hit.transform.position.ToString());
             res = hit.transform.gameObject;
             return res;
         }

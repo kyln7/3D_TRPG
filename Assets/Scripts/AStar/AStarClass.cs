@@ -28,7 +28,7 @@ public class AStarClass
 
     public Vector2 startPos;
     public Vector2 endPos;
-
+    
     public AStarPoint[,] mPointGrid;
     AStarPoint mStartPoint;
     AStarPoint mEndPoint;
@@ -110,6 +110,7 @@ public class AStarClass
         return result;
     }
 
+    #region  寻路功能函数
     //寻路核心方法   
     public AStarPoint FindPath()
     {
@@ -309,6 +310,7 @@ public class AStarClass
         now.mG = g;
         now.mH = h;
     }
+    #endregion
 }
 
 
