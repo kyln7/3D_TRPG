@@ -20872,7 +20872,10 @@ GameObject:
   - component: {fileID: 384466498}
   - component: {fileID: 384466500}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 384466501}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   m_Layer: 0
@@ -20921,6 +20924,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: e78f15551aadb164c9ec82f5da810865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -20938,10 +20942,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveObj: {fileID: 1595596058}
 =======
+=======
+>>>>>>> Stashed changes
   m_Script: {fileID: 11500000, guid: d597f4c2ceb4d714999f79b462b9a748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveObj: {fileID: 1716870825}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &389822978
 GameObject:
@@ -51056,7 +51065,11 @@ Camera:
   field of view: 60
   orthographic: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   orthographic size: 25.93
+=======
+  orthographic size: 37.96
+>>>>>>> Stashed changes
 =======
   orthographic size: 37.96
 >>>>>>> Stashed changes
@@ -51084,7 +51097,11 @@ Transform:
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.21179518, y: -0.4369428, z: 0.10661892, w: 0.8676729}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 33.9, y: 31, z: -68}
+=======
+  m_LocalPosition: {x: 67.1, y: 51.4, z: -89.5}
+>>>>>>> Stashed changes
 =======
   m_LocalPosition: {x: 67.1, y: 51.4, z: -89.5}
 >>>>>>> Stashed changes

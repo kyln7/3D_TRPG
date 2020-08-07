@@ -102,7 +102,11 @@ public class AStarClass
         tmp.Add(tmp_p);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Debug.Log(tmp.Count);
+=======
+        //Debug.Log(tmp.Count);
+>>>>>>> Stashed changes
 =======
         //Debug.Log(tmp.Count);
 >>>>>>> Stashed changes
@@ -111,7 +115,10 @@ public class AStarClass
             result.Add(new Vector2(tmp[i].mPosition.x, tmp[i].mPosition.y));
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         return result;

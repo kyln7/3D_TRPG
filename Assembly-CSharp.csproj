@@ -63,11 +63,17 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     <Compile Include="Assets\Scripts\AI\Base.cs" />
     <Compile Include="Assets\Scripts\AI\FSM\State.cs" />
     <Compile Include="Assets\Scripts\AI\FSM\StateMachine.cs" />
     <Compile Include="Assets\Scripts\AI\InformationPool.cs" />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     <Compile Include="Assets\Scripts\AStar\AStarClass.cs" />
     <Compile Include="Assets\Scripts\AStar\AstarMove.cs" />
@@ -77,6 +83,10 @@
     <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
     <Compile Include="Assets\Scripts\Character\Character.cs" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    <Compile Include="Assets\Scripts\Character\Player.cs" />
+>>>>>>> Stashed changes
 =======
     <Compile Include="Assets\Scripts\Character\Player.cs" />
 >>>>>>> Stashed changes
@@ -85,6 +95,10 @@
     <Compile Include="Assets\Scripts\Dialogue\button.cs" />
     <Compile Include="Assets\Scripts\Dialogue\utils\TypeEffect.cs" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    <Compile Include="Assets\Scripts\GameSystem\GameControl.cs" />
+>>>>>>> Stashed changes
 =======
     <Compile Include="Assets\Scripts\GameSystem\GameControl.cs" />
 >>>>>>> Stashed changes
@@ -93,15 +107,21 @@
     <Compile Include="Assets\Scripts\Map\MapDataList.cs" />
     <Compile Include="Assets\Scripts\SaveLoad\SaveSystem.cs" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\TimeSystem\TimeSystem.cs" />
 =======
+=======
+>>>>>>> Stashed changes
     <Compile Include="Assets\Scripts\Skill\Skill.cs" />
     <Compile Include="Assets\Scripts\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\TimeSystem\TimeSystem.cs" />
     <Compile Include="Assets\Scripts\Utils\LabelAttribute\LabelAttribute.cs" />
     <Compile Include="Assets\Scripts\Utils\LabelAttribute\LabelAttributeDrawer.cs" />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     <None Include="Assets\Data\Dialogue\Test\test.xml" />
     <None Include="Assets\Data\Json\Map1.txt" />
