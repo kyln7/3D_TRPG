@@ -28,7 +28,7 @@ public class AStarClass
 
     public Vector2 startPos;
     public Vector2 endPos;
-
+    
     public AStarPoint[,] mPointGrid;
     AStarPoint mStartPoint;
     AStarPoint mEndPoint;
@@ -101,7 +101,7 @@ public class AStarClass
         }
         tmp.Add(tmp_p);
 
-        Debug.Log(tmp.Count);
+        //Debug.Log(tmp.Count);
         for (int i = tmp.Count - 1; i > -1; i--)
         {
             result.Add(new Vector2(tmp[i].mPosition.x, tmp[i].mPosition.y));
@@ -110,6 +110,7 @@ public class AStarClass
         return result;
     }
 
+    #region  寻路功能函数
     //寻路核心方法   
     public AStarPoint FindPath()
     {
@@ -309,6 +310,7 @@ public class AStarClass
         now.mG = g;
         now.mH = h;
     }
+    #endregion
 }
 
 
