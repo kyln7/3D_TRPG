@@ -101,12 +101,19 @@ public class AStarClass
         }
         tmp.Add(tmp_p);
 
+<<<<<<< Updated upstream
         Debug.Log(tmp.Count);
+=======
+        //Debug.Log(tmp.Count);
+>>>>>>> Stashed changes
         for (int i = tmp.Count - 1; i > -1; i--)
         {
             result.Add(new Vector2(tmp[i].mPosition.x, tmp[i].mPosition.y));
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         return result;
     }
 

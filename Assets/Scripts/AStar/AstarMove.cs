@@ -36,6 +36,7 @@ public class AStarMove
 
     public void SetPoints(Grid[,]map, Vector2 start, Vector2 end)
     {
+<<<<<<< Updated upstream
         if (aStar == null) { aStar = new AStarClass(map, start, end, false, false); }
 
         aStar.map = map;
@@ -44,18 +45,36 @@ public class AStarMove
     }
 
     public bool Move(GameObject gameObject, Grid[,] map, Vector2 start, Vector2 end)
+=======
+        aStar = new AStarClass(map, start, end, false, false);
+    }
+
+    public bool Move(GameObject gameObject, Grid[,] map, Vector2 start, Vector2 end   ,out Vector2 endPOs)
+>>>>>>> Stashed changes
     {
         if (!ifGetPath)
         {
             SetPoints(map, start, end);
+<<<<<<< Updated upstream
             path = aStar.getPath();
 
+=======
+
+            path = aStar.getPath();
+>>>>>>> Stashed changes
             ifGetPath = true;
         }
         else
         {
+<<<<<<< Updated upstream
             if (num == path.Count - 1)
             {
+=======
+
+            if (num == path.Count)
+            {
+                endPOs = path[num - 1];
+>>>>>>> Stashed changes
                 //初始化配置
                 ifGetPath = false;
                 num = 0;
@@ -64,6 +83,7 @@ public class AStarMove
                 return true;
             }
 
+<<<<<<< Updated upstream
 
             if (MoveStep(gameObject) == Status.Moved)
             {
@@ -71,6 +91,26 @@ public class AStarMove
             }
         }
 
+=======
+            Status flag = MoveStep(gameObject);
+            if (flag == Status.Moved)
+            {
+                num += 1;
+            }
+            else if (flag == Status.Interrupt)
+            {
+                endPOs = path[num - 1];
+                //初始化配置
+                ifGetPath = false;
+                num = 0;
+                path = null;
+
+                return true;
+            }
+        }
+
+        endPOs = Vector2.zero;
+>>>>>>> Stashed changes
         return false;
     }
 
@@ -80,11 +120,22 @@ public class AStarMove
         Vector3 s = gameObject.transform.position;
         Vector3 e = new Vector3(targetGrid.x, s.y, targetGrid.z);
 
+<<<<<<< Updated upstream
         if (GameSystem. new Vector2(e.x,e.z))
 
         moveVec = e - s;
         if (moveVec.magnitude < 0.05f) return Status.Moved;
         Debug.Log("Length: " + moveVec.magnitude.ToString("0.0000"));
+=======
+        if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Npc"))
+        {
+            return Status.Interrupt;
+        }
+
+        moveVec = e - s;
+        if (moveVec.magnitude < 0.05f) return Status.Moved;
+        //Debug.Log("Length: " + moveVec.magnitude.ToString("0.0000"));
+>>>>>>> Stashed changes
         moveVec = moveVec.normalized;
 
         //Debug.Log("Moving: " + s.ToString("0.0000") + " to " + e.ToString("0.0000"));

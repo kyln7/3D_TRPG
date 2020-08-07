@@ -12,7 +12,10 @@ public class testmove : MonoBehaviour
     bool ifTouched = false;
 
     private GridArray mapData;
+<<<<<<< Updated upstream
     int i = 0;
+=======
+>>>>>>> Stashed changes
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,7 @@ public class testmove : MonoBehaviour
     void Update()
     {
         //Debug.Log("waiting for press");
+<<<<<<< Updated upstream
         if (Input.GetMouseButtonDown(0))
         {
             ifTouched = true;
@@ -42,6 +46,16 @@ public class testmove : MonoBehaviour
 
             //AStarClass aStar = new AStarClass(mapData.gridArray, startPos, endPos, false, false);
             //List<Vector2> path = aStar.getPath();
+=======
+        if (!ifTouched && Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("buttondown");
+            ifTouched = true;
+            GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
+            if (obj == null) return;
+            endPos = new Vector2(mapData.GetGridPos(obj)[0], mapData.GetGridPos(obj)[1]);
+
+>>>>>>> Stashed changes
             Debug.Log("start:" + startPos.ToString());
             Debug.Log("end:" + endPos.ToString());
 
@@ -50,6 +64,7 @@ public class testmove : MonoBehaviour
 
         if (ifTouched)
         {
+<<<<<<< Updated upstream
             if (AStarMove.GetInstance().Move(moveObj, mapData.gridArray, startPos, endPos))
             {
                 ifTouched = false;
@@ -74,4 +89,13 @@ public class testmove : MonoBehaviour
     }*/
 
 
+=======
+            if (AStarMove.GetInstance().Move(moveObj, mapData.gridArray, startPos, endPos, out startPos))
+            {
+                ifTouched = false;
+                //startPos = endPos;
+            }
+        }
+    }
+>>>>>>> Stashed changes
 }
