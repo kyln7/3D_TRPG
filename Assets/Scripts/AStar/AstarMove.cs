@@ -10,20 +10,22 @@ public class AStarMove
 {
     private static AStarMove instance;
 
+    public bool endMove = false;
+
     AStarClass aStar;
     List<Vector2> path;
 
     //是否已搜索到路径
-    private bool ifGetPath = false;
+    public bool ifGetPath = false;
     //目前移动到路径的第几段
     int num = 0;
     Vector3 moveVec = Vector3.zero;
 
     float speed = 10;
 
-    AStarMove() { }
-    AStarMove(Grid[,] map) { aStar = new AStarClass(map, Vector2.zero, Vector2.zero, false, false); }
-    AStarMove(Grid[,] map,Vector2 start,Vector2 end) { aStar = new AStarClass(map, start, end, false, false); }
+    public AStarMove() { }
+    public AStarMove(Grid[,] map) { aStar = new AStarClass(map, Vector2.zero, Vector2.zero, false, false); }
+    public AStarMove(Grid[,] map, Vector2 start, Vector2 end) { aStar = new AStarClass(map, start, end, false, false); }
 
     public static AStarMove GetInstance()
     {
@@ -34,7 +36,7 @@ public class AStarMove
         return instance;
     }
 
-    public void SetPoints(Grid[,]map, Vector2 start, Vector2 end)
+    public void SetPoints(Grid[,] map, Vector2 start, Vector2 end)
     {
         aStar = new AStarClass(map, start, end, false, false);
     }
@@ -45,7 +47,7 @@ public class AStarMove
         {
             SetPoints(map, start, end);
             path = aStar.getPath();
-
+            endMove = false;
             ifGetPath = true;
         }
         else
@@ -57,7 +59,7 @@ public class AStarMove
                 ifGetPath = false;
                 num = 0;
                 path = null;
-
+                endMove = true;
                 return true;
             }
 
@@ -73,7 +75,7 @@ public class AStarMove
                 ifGetPath = false;
                 num = 0;
                 path = null;
-
+                endMove = true;
                 Debug.Log(flag);
                 return true;
             }

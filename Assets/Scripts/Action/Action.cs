@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TRpgMap;
 
 namespace TRpgAction
 {
@@ -15,45 +16,41 @@ namespace TRpgAction
         }
         public virtual void FinishAction(Character character)
         {
-            
+
         }
     }
 
     public class MoveAction : Action
     {
-        public Vector2Int endPos;
-        public Vector2Int startPos;
+        public Vector2 endPos;
+        public Vector2 startPos;
+        public GridArray mapData;
+        public Vector2 stopPos;
+        public AStarMove aStarMove;
         public override void DoAction(Character character)
         {
-            TRpgMap.Grid startGrid = GameControl.Map.gridArray[character.curPos.x, character.curPos.y];
-            TRpgMap.Grid endGrid = GameControl.Map.gridArray[character.walkPos.x, character.walkPos.y];
-            startPos = new Vector2Int(startGrid.x, startGrid.z);
-            endPos = new Vector2Int(endGrid.x, endGrid.z);
-            //Debug.Log("Doing");
-            if ((endPos - startPos).magnitude > 1f)
+            if (!aStarMove.ifGetPath)
             {
-                //temp code
-                Vector3 s = new Vector3(startPos.x, 1, startPos.y);
-                Vector3 e = new Vector3(endPos.x, 1, endPos.y);
-                //TODO
-                //Debug.Log("Mowing");
-                character.transform.Translate((e - s).normalized * Time.deltaTime * 10f);
+                startPos = new Vector2Int(character.curPos.x, character.curPos.y);
             }
-            else isDone = true;
+            if (aStarMove.Move(character.gameObject, mapData.gridArray, startPos, endPos, out Vector2 stopPos)) isDone = true;
         }
         public override void FinishAction(Character character)
         {
             Debug.Log("Finish Walking");
             isDone = true;
+            aStarMove.ifGetPath = false;
             doing = false;
             character.canMove = true;
         }
-        public MoveAction(Vector2Int pos)
+        public MoveAction(Vector2Int pos, GridArray mapData)
         {
+            this.mapData = mapData;
             isDone = false;
             doing = false;
             ActionName = "MoveAction";
             endPos = pos;
+            aStarMove = AStarMove.GetInstance();
         }
     }
 

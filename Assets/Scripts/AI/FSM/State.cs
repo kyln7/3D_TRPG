@@ -29,6 +29,7 @@ namespace TrpgAI
     {
         Idel, Walk, Talk,
     }
+    
     class IdelState : State
     {
         public IdelState()
