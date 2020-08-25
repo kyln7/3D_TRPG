@@ -12,6 +12,10 @@ public class GameControl : MonoBehaviour
     void Start()
     {
         Map = SaveSystem.LoadMapData();
+        foreach(var item in Map.gridArray)
+        {
+            if(!item.canMove) Debug.Log("A");
+        }
     }
 
     // Update is called once per frame

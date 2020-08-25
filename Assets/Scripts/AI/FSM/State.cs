@@ -93,6 +93,7 @@ namespace TrpgAI
                     c.curAction.FinishAction(c);
                     c.canMove = false;
                     c.GetAction();
+                    c.AddMoveAction(c.walkPos);
                     return m_StateMachine.Transition((int)EStateType.Talk);
                 }
             }
@@ -120,7 +121,6 @@ namespace TrpgAI
             Character c = (Character)Agent;
             if (c.curAction.isDone)
             {
-                c.AddIdelAction();
                 return m_StateMachine.Transition((int)EStateType.Idel);
             }
             else

@@ -63,6 +63,11 @@ public class Character : MonoBehaviour, IAgent
         walkPos = new Vector2Int(GameControl.Map.GetGridPos(v3)[0], GameControl.Map.GetGridPos(v3)[1]);
         Actions.Enqueue(new MoveAction(walkPos, GameControl.Map));
     }
+    public void AddMoveAction(Vector2Int pos)
+    {
+        walkPos = pos;
+        Actions.Enqueue(new MoveAction(walkPos, GameControl.Map));
+    }
     //添加一个待机行为
     public void AddIdelAction()
     {

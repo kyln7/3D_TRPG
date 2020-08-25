@@ -16,7 +16,7 @@ public class MapBuilder : EditorWindow
     //The ref of the dataList
     MapDataList mapDataList;
     //The ref of the GridMapData
-    GridArray gridArray;
+    static GridArray gridArray;
     //GridMap StartPos obj
     GameObject startPos;
     //GridMap EndPos obj
@@ -135,14 +135,14 @@ public class MapBuilder : EditorWindow
         EditorGUILayout.EndHorizontal();
         //End Save
         //Load Button
-        Rect loadButtonRect = (Rect)EditorGUILayout.BeginHorizontal("Button", GUILayout.Height(30f));
-        if (GUI.Button(loadButtonRect, GUIContent.none))
-        {
-            //TODO
-            LoadData();
-        }
-        GUILayout.Label("Load Map");
-        EditorGUILayout.EndHorizontal();
+        // Rect loadButtonRect = (Rect)EditorGUILayout.BeginHorizontal("Button", GUILayout.Height(30f));
+        // if (GUI.Button(loadButtonRect, GUIContent.none))
+        // {
+        //     //TODO
+        //     LoadData();
+        // }
+        // GUILayout.Label("Load Map");
+        // EditorGUILayout.EndHorizontal();
         //End Load
         EditorGUILayout.EndHorizontal();
         //End Button Rect Area
@@ -204,13 +204,14 @@ public class MapBuilder : EditorWindow
                 int z = GetGridZ(gridTransform);
                 int height = GetGridY(gridTransform);
                 string gridName = gridTransform.name;
-                if (gridTransform.CompareTag("canMove"))
+                if (gridTransform.CompareTag("canMove")/*!GameSystem.HasObjectOnGrid(new Vector2Int((int)gridTransform.position.x,(int)gridTransform.position.z),"Wall")*/)
                 {
                     gridArray.gridArray[(x - (int)startPos.transform.position.x) / TRpgMap.Grid.cellSizeXZ, (z - (int)startPos.transform.position.z) / TRpgMap.Grid.cellSizeXZ]
                      = new TRpgMap.Grid(x, z, height, true, gridName);
                 }
                 else
                 {
+                    Debug.Log("1");
                     gridArray.gridArray[(x - (int)startPos.transform.position.x) / TRpgMap.Grid.cellSizeXZ, (z - (int)startPos.transform.position.z) / TRpgMap.Grid.cellSizeXZ]
                      = new TRpgMap.Grid(x, z, height, false, gridName);
                 }
@@ -324,6 +325,7 @@ public class MapBuilder : EditorWindow
     static void CreateGround()
     {
         Transform startPos, endPos, map;
+        gridArray = SaveSystem.LoadMapData();
         startPos = GameObject.Find("MapStartPos").transform;
         endPos = GameObject.Find("MapEndPos").transform;
         map = GameObject.Find("Map").transform;
@@ -340,7 +342,13 @@ public class MapBuilder : EditorWindow
         {
             for (int z = (int)startPos.position.z; z <= (int)endPos.position.z; z += 2)
             {
-                Instantiate(Resources.Load("Map/Ground1", typeof(GameObject)), new Vector3(x, 0, z), new Quaternion(), map);
+                GameObject r = (GameObject)Instantiate(Resources.Load("Map/Ground1", typeof(GameObject)), new Vector3(x, 0, z), new Quaternion(), map);
+                r.name.Replace("(Clone)", "");
+                if (!gridArray.gridArray[gridArray.GetGridPos(r)[0], gridArray.GetGridPos(r)[1]].canMove)
+                {
+                    r.tag = "cantMove";
+                }
+                r.AddComponent<Room>();
             }
         }
     }
