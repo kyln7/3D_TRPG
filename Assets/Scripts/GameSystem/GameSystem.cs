@@ -59,8 +59,8 @@ public class GameSystem : MonoBehaviour
     {
         int layer = LayerMask.GetMask(layerMask);
         RaycastHit raycast;
-        Debug.DrawRay(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up * 100f, Color.red, 100f);
-        if (Physics.Raycast(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up, out raycast, Mathf.Infinity, layer))
+        Debug.DrawRay(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up * 100f, Color.red, 100f);
+        if (Physics.Raycast(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up, out raycast, Mathf.Infinity, layer))
         {
             return raycast.transform.gameObject;
         }
