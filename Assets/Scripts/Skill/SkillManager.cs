@@ -12,11 +12,8 @@ public class SkillManager : MonoBehaviour
     public bool Hit;
     [Label("投掷")]
     public bool Throw;
-<<<<<<< HEAD
-=======
     [Label("侦查")]
     public bool Insight;
->>>>>>> JQY
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +21,7 @@ public class SkillManager : MonoBehaviour
         activeSkills = new List<Skill>();
         if (Hit) skills.Add(new Hit(gameObject));
         if (Throw) skills.Add(new Throw(gameObject));
-<<<<<<< HEAD
-=======
         if (Insight) skills.Add(new Throw(gameObject));
->>>>>>> JQY
     }
 
     // Update is called once per frame
