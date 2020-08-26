@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public int roomNum = -1;
+    public int roomNum;
+    
+    private void Start() {
+
+    }
 
 }
