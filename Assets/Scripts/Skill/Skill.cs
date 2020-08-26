@@ -5,7 +5,7 @@ using UnityEngine;
 namespace TRpgSkill
 {
 
-    public abstract class Skill : MonoBehaviour
+    public abstract class Skill
     {
         private GameObject owner;
         private string skillName;
@@ -16,6 +16,8 @@ namespace TRpgSkill
         public abstract void Use();
         public abstract void Use(Character character);
         public abstract void Use(Item item);
+
+        public abstract List<Vector2Int> GetScope();
 
         public string SkillName { get => skillName; set => skillName = value; }
         public string SkillInfo { get => skillInfo; set => skillInfo = value; }
@@ -32,6 +34,12 @@ namespace TRpgSkill
             SkillInfo = "让他的脸开花！";
             Range = 1;
         }
+
+        public override List<Vector2Int> GetScope()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override bool IsActive()
         {
             Vector2Int pos = new Vector2Int((int)Owner.transform.position.x, (int)Owner.transform.position.z);
@@ -70,12 +78,34 @@ namespace TRpgSkill
         }
         public int GetRange(GameObject owner)
         {
-            Character character = owner.GetComponent<Character>();
-            if (character && character.isActiveAndEnabled)
+            Player player = owner.GetComponent<Player>();
+            if (player && player.isActiveAndEnabled)
             {
-                return character.Strenth / 10 + 1;
+                return player.Strenth / 10 + 1;
             }
             else return 1;
+        }
+
+        public override List<Vector2Int> GetScope()
+        {
+            Vector2Int playerPos = new Vector2Int((int)Owner.transform.position.x, (int)Owner.transform.position.z);
+            int roomNum = GameSystem.GetObjectOnGrid(playerPos, "Ground").GetComponent<Room>().roomNum;
+            Debug.Log("Player Room Number :" + roomNum);
+            TRpgMap.GridArray gridArray = GameControl.Map;
+            List<Vector2Int> temp = new List<Vector2Int>();
+            List<Vector2Int> res = new List<Vector2Int>();
+            temp = GameSystem.GetRange(playerPos, Range);
+            Debug.Log("Range :" + Range);
+            foreach (Vector2Int tempNode in temp)
+            {
+                Vector2Int node = gridArray.GetGridPos(tempNode);
+                if (gridArray.gridArray[node.x, node.y].canMove &&
+                roomNum == GameSystem.GetObjectOnGrid(tempNode, "Ground").GetComponent<Room>().roomNum)
+                {
+                    res.Add(tempNode);
+                }
+            }
+            return res;
         }
         public override bool IsActive()
         {
@@ -111,6 +141,11 @@ namespace TRpgSkill
             SkillInfo = "摆出防御姿态";
         }
 
+        public override List<Vector2Int> GetScope()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override bool IsActive()
         {
             //todo
@@ -143,6 +178,11 @@ namespace TRpgSkill
             Owner = owner;
             SkillName = "侦查";
             SkillInfo = "侦查四周";
+        }
+
+        public override List<Vector2Int> GetScope()
+        {
+            throw new System.NotImplementedException();
         }
 
         public override bool IsActive()

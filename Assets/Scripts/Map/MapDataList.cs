@@ -77,6 +77,13 @@ namespace TRpgMap
             z = (int)(obj.transform.position.z - zStart) / Grid.cellSizeXZ;
             return new int[2] { x, z };
         }
+        public Vector2Int GetGridPos(Vector2Int pos)
+        {
+            int x, z;
+            x = (int)(pos.x - xStart) / Grid.cellSizeXZ;
+            z = (int)(pos.y - zStart) / Grid.cellSizeXZ;
+            return new Vector2Int(x, z);
+        }
         //设置item下的grid
         public void SetGridUnderObj(Item obj)
         {
