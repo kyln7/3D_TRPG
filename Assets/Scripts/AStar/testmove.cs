@@ -12,7 +12,7 @@ public class testmove : MonoBehaviour
     bool ifTouched = false;
 
     private GridArray mapData;
-    int i = 0;
+    //int i = 0;
     // Start is called before the first frame update
     void Start()
     {

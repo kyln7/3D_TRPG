@@ -204,7 +204,7 @@ public class MapBuilder : EditorWindow
                 int z = GetGridZ(gridTransform);
                 int height = GetGridY(gridTransform);
                 string gridName = gridTransform.name;
-                if (gridTransform.CompareTag("canMove")/*!GameSystem.HasObjectOnGrid(new Vector2Int((int)gridTransform.position.x,(int)gridTransform.position.z),"Wall")*/)
+                if (/*gridTransform.CompareTag("canMove")*/!GameSystem.HasObjectOnGrid(new Vector2Int((int)gridTransform.position.x, (int)gridTransform.position.z), "Wall"))
                 {
                     gridArray.gridArray[(x - (int)startPos.transform.position.x) / TRpgMap.Grid.cellSizeXZ, (z - (int)startPos.transform.position.z) / TRpgMap.Grid.cellSizeXZ]
                      = new TRpgMap.Grid(x, z, height, true, gridName);
@@ -344,11 +344,40 @@ public class MapBuilder : EditorWindow
             {
                 GameObject r = (GameObject)Instantiate(Resources.Load("Map/Ground1", typeof(GameObject)), new Vector3(x, 0, z), new Quaternion(), map);
                 r.name.Replace("(Clone)", "");
+                r.layer = LayerMask.NameToLayer("Ground");
                 if (!gridArray.gridArray[gridArray.GetGridPos(r)[0], gridArray.GetGridPos(r)[1]].canMove)
                 {
                     r.tag = "cantMove";
                 }
                 r.AddComponent<Room>();
+            }
+        }
+    }
+    [MenuItem("TRPG/SetRooms")]
+    static void SetRooms()
+    {
+        Transform startPos, endPos, map, roomstart, roomend, RoomNums;
+        gridArray = SaveSystem.LoadMapData();
+        startPos = GameObject.Find("MapStartPos").transform;
+        endPos = GameObject.Find("MapEndPos").transform;
+        map = GameObject.Find("Map").transform;
+        RoomNums = GameObject.Find("RoomNums").transform;
+        if (startPos == null || endPos == null || map == null)
+        {
+            Debug.Log("StartPos OR EndPos OR Map Not Found");
+            return;
+        }
+        foreach (Transform room in RoomNums)
+        {
+            int num = int.Parse(room.name);
+            roomstart = room.Find("room" + num + "start");
+            roomend = room.Find("room" + num + "end");
+            for (int x = (int)roomstart.position.x; x <= (int)roomend.position.x; x += 2)
+            {
+                for (int z = (int)roomstart.position.z; z <= (int)roomend.position.z; z += 2)
+                {
+                    GameSystem.GetObjectOnGrid(new Vector2Int(x, z), "Ground").GetComponent<Room>().roomNum = num;
+                }
             }
         }
     }

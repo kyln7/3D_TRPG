@@ -182,12 +182,29 @@ namespace TRpgSkill
 
         public override List<Vector2Int> GetScope()
         {
-            throw new System.NotImplementedException();
+            Vector2Int playerPos = new Vector2Int((int)Owner.transform.position.x, (int)Owner.transform.position.z);
+            int roomNum = GameSystem.GetObjectOnGrid(playerPos, "Ground").GetComponent<Room>().roomNum;
+            Debug.Log("Player Room Number :" + roomNum);
+            TRpgMap.GridArray gridArray = GameControl.Map;
+            List<Vector2Int> temp = new List<Vector2Int>();
+            List<Vector2Int> res = new List<Vector2Int>();
+            temp = GameSystem.GetRange(playerPos, 20);
+            Debug.Log("Range :" + Range);
+            foreach (Vector2Int tempNode in temp)
+            {
+                Vector2Int node = gridArray.GetGridPos(tempNode);
+                if (gridArray.gridArray[node.x, node.y].canMove &&
+                roomNum == GameSystem.GetObjectOnGrid(tempNode, "Ground").GetComponent<Room>().roomNum)
+                {
+                    res.Add(tempNode);
+                }
+            }
+            return res;
         }
 
         public override bool IsActive()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public override void Use()

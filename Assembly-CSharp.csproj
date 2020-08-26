@@ -76,6 +76,7 @@
      <None Include="Assets\Data\Dialogue\Test\test.xml" />
      <None Include="Assets\Data\Json\Map1.txt" />
      <None Include="Assets\Data\Json\MapData.txt" />
+     <None Include="Assets\Data\Json\House.txt" />
      <None Include="Assets\Data\Json\SampleScene.txt" />
  <Reference Include="UnityEngine">
  <HintPath>E:/Unity/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -46,8 +46,8 @@ public class GameSystem : MonoBehaviour
     {
         int layer = LayerMask.GetMask(layerMask);
         RaycastHit hit;
-        Debug.DrawRay(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up * 100f, Color.red, 100f);
-        if (Physics.Raycast(new Vector3(detectPos.x, 0, detectPos.y), Vector3.up, out hit, Mathf.Infinity, layer))
+        Debug.DrawRay(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up * 100f, Color.red, 100f);
+        if (Physics.Raycast(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up, out hit, Mathf.Infinity, layer))
         {
             return true;
         }
