@@ -7,6 +7,7 @@ TagManager:
   - Map
   - canMove
   - cantMove
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Ground
   - Npc
   - Wall
-  - 
+  - Item
   - 
   - 
   - 

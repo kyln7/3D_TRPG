@@ -202,6 +202,20 @@ namespace TRpgSkill
             return res;
         }
 
+        public List<GameObject> GetItems()
+        {
+            List<Vector2Int> temp = GetScope();
+            List<GameObject> res = new List<GameObject>();
+            foreach (Vector2Int tempNode in temp)
+            {
+                if (GameSystem.HasObjectOnGrid(tempNode,"Item"))
+                {
+                    res.Add(GameSystem.GetObjectOnGrid(tempNode,"Item"));
+                }
+            }
+            return res;
+        }
+
         public override bool IsActive()
         {
             return true;

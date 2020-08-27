@@ -19,6 +19,7 @@ public class SkillManager : MonoBehaviour
         activeSkills = new List<Skill>();
         if (Hit) skills.Add(new Hit(gameObject));
         if (Throw) skills.Add(new Throw(gameObject));
+        skills.Add(new Insight(gameObject));
     }
 
     // Update is called once per frame

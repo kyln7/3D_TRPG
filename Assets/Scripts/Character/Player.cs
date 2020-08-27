@@ -21,6 +21,11 @@ public class Player : MonoBehaviour
             if(skill is Throw){
                 skillScope = skill.GetScope();
             }
+            if(skill is Insight)
+            {
+                Insight insight = (Insight)skill;
+                ShowItems(insight);
+            }
         }
         ShowScope();
     }
@@ -36,6 +41,16 @@ public class Player : MonoBehaviour
         foreach(Vector2Int node in skillScope)
         {
             GameSystem.GetObjectOnGrid(node, "Ground").transform.Find("select").gameObject.SetActive(true);
+        }
+    }
+
+    public void ShowItems(Insight insight)
+    {
+        List<GameObject> items = new List<GameObject>();
+        items = insight.GetItems();
+        foreach(GameObject item in items)
+        {
+            Debug.Log(item.name);
         }
     }
 }
