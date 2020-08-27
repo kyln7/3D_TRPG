@@ -12,6 +12,8 @@ public class SkillManager : MonoBehaviour
     public bool Hit;
     [Label("投掷")]
     public bool Throw;
+    [Label("侦查")]
+    public bool Insight;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class SkillManager : MonoBehaviour
         activeSkills = new List<Skill>();
         if (Hit) skills.Add(new Hit(gameObject));
         if (Throw) skills.Add(new Throw(gameObject));
-        skills.Add(new Insight(gameObject));
+        if (Insight) skills.Add(new Insight(gameObject));
     }
 
     // Update is called once per frame

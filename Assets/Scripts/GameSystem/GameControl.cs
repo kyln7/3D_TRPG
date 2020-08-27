@@ -8,7 +8,7 @@ public class GameControl : MonoBehaviour
 {
     public static GridArray Map;
     public GameObject player;
-    
+
     void Start()
     {
         Map = SaveSystem.LoadMapData();
@@ -19,7 +19,12 @@ public class GameControl : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            player.GetComponent<Character>().AddTalkAction();
+            if (player.GetComponent<Player>().s_inSight != null)
+            {
+                //player.GetComponent<Player>().s_inSight.GetScope();
+                player.GetComponent<Player>().ShowScope((Insight)player.GetComponent<Player>().s_inSight);
+                player.GetComponent<Player>().ShowItems((Insight)player.GetComponent<Player>().s_inSight);
+            }
         }
     }
 }
