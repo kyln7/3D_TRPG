@@ -3,32 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour
+
+
+public class DialogueManager:MonoBehaviour
 {
-    public GameObject DialogBox;
+    public static DialogueManager instance;
 
-    Dialogue dialogue;
-    int i = 0;
-    // Start is called before the first frame update
-    void Start()
+    public bool StartDialog(string TextName)
     {
-        dialogue = new Dialogue();
-        dialogue.LoadDialogue("01");
-        Debug.Log(dialogue.sentences.Count);
+        //加载对话文件
+        Dialogue dialogue = new Dialogue();
+        if (!dialogue.LoadDialogue(TextName)) return false;
+
+        //加载对话框
+        GameObject DialogBox = Resources.Load("Dialogue/DialogueSet") as GameObject;
+
+        TypeEffect typeEffect = DialogBox.GetComponent<TypeEffect>();
+        StartCoroutine(typeEffect.StartDia(DialogBox, dialogue,0.5f));
+
+        return true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool StartDialog(Dialogue dialogue)
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (i > dialogue.sentences.Count - 1) i = 0;
-
-            Debug.Log(dialogue.sentences[i].getContent());
-            DialogBox.transform.GetChild(0).GetComponentInChildren<Text>().text = dialogue.sentences[i].getName();
-            DialogBox.transform.GetChild(1).GetComponentInChildren<Text>().text = dialogue.sentences[i].getContent();
-            i += 1;
-        }
+        return true;
     }
-
 }

@@ -28,6 +28,6 @@ public class button : MonoBehaviour
     {
         int num = Random.Range(0, dialogues.Count);
         Debug.Log("加载对话：" + num.ToString());
-        StartCoroutine(gameObject.GetComponent<TypeEffect>().StartDialog(dialogues[num]));
+        //StartCoroutine(gameObject.GetComponent<TypeEffect>().StartDialog(dialogues[num]));
     }
 }

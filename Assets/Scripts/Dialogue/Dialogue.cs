@@ -1,56 +1,87 @@
-﻿using System.Collections;
+﻿//读取并保存对话信息
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Excel;
+using System.IO;
+using System.Data;
+
 [Serializable]
 public class Dialogue
 {
-    public List<Sentence> sentences;
+    public List<Sentence> sentences = new List<Sentence>();//每一行对话
+    public Dictionary<string, Sprite> LoadedPics = new Dictionary<string, Sprite>();//预加载的图片资源
 
     public Dialogue(){ sentences = new List<Sentence>(); }
 
-    public void LoadDialogue(string textname)
+    public bool LoadDialogue(string textname)
     {
-        string path = System.IO.Path.Combine("Dialogue",textname);
-        
-        TextAsset textfile = Resources.Load(path, typeof(TextAsset)) as TextAsset;
-        string[] lines = textfile.text.Split('\r');
+        string path = Path.Combine("Dialogue",textname);
 
-        foreach (string line in lines)
+        DataSet result;
+        //读取xlsx文件
+        try
         {
-            string[] sentenceText = line.Split(',');
-            if (sentenceText[2] == "content") continue;
-            Sentence sentence = new Sentence(sentenceText[0], sentenceText[1], sentenceText[2], sentenceText[3]);
+            FileStream stream = File.Open(Application.dataPath + "/Resources/Dialogue/" + textname + ".xlsx", FileMode.Open, FileAccess.Read);
+            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+            result = excelReader.AsDataSet();
+        }
+        catch (FileNotFoundException)
+        {
+            Debug.Log("找不到xlsx文件：" + textname);
+            return false;
+        }
+
+        //预加载图片
+        string PicToBeLoad = result.Tables[0].Rows[0][1].ToString();
+        //Debug.Log(result.Tables[0].Rows[0][1]);
+        string[] pnames = PicToBeLoad.Split(',');
+        for (int i = 0; i < pnames.Length; i++)
+        {
+            Sprite tmp = Resources.Load("Character/" + pnames[i], typeof(Sprite)) as Sprite;
+            if (tmp==null) { Debug.Log("找不到图片：" + pnames[i].ToString()); return false; }
+            LoadedPics.Add(pnames[i], tmp);
+        }
+
+        for (int i = 2; i < result.Tables[0].Rows.Count; i++)
+        {
+            DataRow sentenceText = result.Tables[0].Rows[i];
+            Sentence sentence = new Sentence(sentenceText[0].ToString(), sentenceText[1].ToString(),
+                                             sentenceText[2].ToString(), sentenceText[3].ToString());
             sentences.Add(sentence);
         }
+
+        return true;
     }
 }
 
 [Serializable]
 public class Sentence
 {
-
     string name;
-    SType type;
+    string speaker;
     string content;
-    Sprite pic;
+    List<string> picnames;
 
     public Sentence() { }
-    public Sentence(string n, string t, string c, string picname)
+    public Sentence(string n, string s, string c, string picset)
     {
         name = n;
-        type = t == "0" ? SType.self : SType.NPC;
+        speaker = s;
         content = c;
-        pic = Resources.Load("Sprite/" + picname, typeof(Sprite)) as Sprite; 
+
+        picnames = new List<string>();
+        string[] tmp = picset.Split(',');
+        for (int i = 0; i < tmp.Length; i++)
+        {
+            picnames.Add(tmp[i]);
+        }
     }
 
-    public string getName() { return name; }
-    public SType GetSType() { return type; }
-    public string getContent() { return content; }
+    public string GetName() { return name; }
+    public string GetSpeaker() { return speaker; }
+    public string GetContent() { return content; }
+    public List<string> GetPicnames() { return picnames; }
 }
-public enum SType
-{
-    self,
-    NPC
-}
+

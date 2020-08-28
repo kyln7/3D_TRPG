@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class TypeEffect : MonoBehaviour
 {
-    public Text text;
-    public float speed;
+    Image LC, RC;
+    Text NameText, MainText;
 
-    public IEnumerator StartDialog(Dialogue dialogue)
+    public IEnumerator StartDia(GameObject DialogBox, Dialogue dialogue, float textspeed)
     {
-        GameObject DialogBox = GameObject.Find("Canvas").transform.Find("DialogBox").gameObject;
-        DialogBox.SetActive(true);
+        //GameObject DialogBox = GameObject.Find("Canvas").transform.Find("DialogBox").gameObject;
+        //生成对话框
+        DialogBox = Instantiate(DialogBox);
+        DialogBox.transform.SetParent(GameObject.Find("Canvas").transform);
+        DialogBox.GetComponent<RectTransform>().localPosition = new Vector3(0, -385, 0);
+
+        LC = DialogBox.transform.GetChild(0).gameObject.GetComponent<Image>();
+        RC = DialogBox.transform.GetChild(1).gameObject.GetComponent<Image>();
+        NameText = DialogBox.transform.GetChild(2).GetChild(0).GetComponent<Text>();
+        MainText = DialogBox.transform.GetChild(2).GetChild(1).GetComponent<Text>();
 
         int i = 0;
         while (true)
@@ -21,35 +29,45 @@ public class TypeEffect : MonoBehaviour
             {
                 //Debug.Log("start Dialog!");
                 if (i > dialogue.sentences.Count - 1) break;
- 
-                if (dialogue.sentences[i].GetSType() == SType.self)
+
+                NameText.text = dialogue.sentences[i].GetName();
+                LC.sprite = dialogue.LoadedPics[dialogue.sentences[i].GetPicnames()[0]];
+                RC.sprite = dialogue.LoadedPics[dialogue.sentences[i].GetPicnames()[1]];
+
+                //控制角色明暗
+                int s = 0;
+                foreach (var item in dialogue.LoadedPics)
                 {
-                    DialogBox.transform.GetChild(0).gameObject.SetActive(true);
-                    DialogBox.transform.GetChild(1).gameObject.SetActive(false);
-                    DialogBox.transform.GetChild(0).GetComponentInChildren<Text>().text = dialogue.sentences[i].getName();
+                    if (dialogue.sentences[i].GetSpeaker() == item.Key)
+                    {
+                        break;
+                    }
+                    s += 1;
+                }
+                if (s == 0)
+                {
+                    LC.color = Color.white;
+                    RC.color = Color.gray;
                 }
                 else
                 {
-                    DialogBox.transform.GetChild(1).gameObject.SetActive(true);
-                    DialogBox.transform.GetChild(0).gameObject.SetActive(false);
-                    DialogBox.transform.GetChild(1).GetComponentInChildren<Text>().text = dialogue.sentences[i].getName();
+                    RC.color = Color.white;
+                    LC.color = Color.gray;
                 }
 
-                StartCoroutine(TypeAsWrite(DialogBox.transform.GetChild(2).GetComponentInChildren<Text>(),
-                                                                  dialogue.sentences[i].getContent()));
+                Debug.Log(DialogBox.activeSelf);
+                //显示对话
+                yield return StartCoroutine(test());//TypeAsWrite(MainText,dialogue.sentences[i].GetContent(),textspeed));
                 i += 1;
             }
         }
-        DialogBox.SetActive(false);
+        //DialogBox.SetActive(false);
+        Destroy(DialogBox);
 
     }
-    /*
-    public void TypeAsWrite(Text textBox, string content)
-    {
-        StartCoroutine(Typing(textBox, content));
-    }*/
 
-    IEnumerator TypeAsWrite(Text textBox, string content)
+    //打字机效果
+    IEnumerator TypeAsWrite(Text textBox, string content, float speed)
     {
         int i = 0;
         float timer = 0;
@@ -67,5 +85,11 @@ public class TypeEffect : MonoBehaviour
 
             if (i > content.Length) break;
         }
+    }
+
+    IEnumerator test()
+    {
+        yield return null;
+        Debug.Log("test");
     }
 }
