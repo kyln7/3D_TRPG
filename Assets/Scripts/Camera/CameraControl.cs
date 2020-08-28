@@ -16,28 +16,31 @@ public class CameraControl : MonoBehaviour
     }
     void Update()
     {
-        resPos = Camera.main.transform.position;
-        if (Mathf.Abs(Input.mousePosition.x - Screen.width) <= detectLen || Input.GetKey(KeyCode.RightArrow))
+        if (GameControl.inputMode == GameControl.InputMode.Game)
         {
-            resPos += transform.right * Time.deltaTime * moveSpeed;
+            resPos = Camera.main.transform.position;
+            if (Mathf.Abs(Input.mousePosition.x - Screen.width) <= detectLen || Input.GetKey(KeyCode.RightArrow))
+            {
+                resPos += transform.right * Time.deltaTime * moveSpeed;
+            }
+            if (Mathf.Abs(Input.mousePosition.x) <= detectLen || Input.GetKey(KeyCode.LeftArrow))
+            {
+                resPos -= transform.right * Time.deltaTime * moveSpeed;
+            }
+            if (Mathf.Abs(Input.mousePosition.y - Screen.height) <= detectLen || Input.GetKey(KeyCode.UpArrow))
+            {
+                resPos += transform.up * Time.deltaTime * moveSpeed;
+            }
+            if (Mathf.Abs(Input.mousePosition.y) <= detectLen || Input.GetKey(KeyCode.DownArrow))
+            {
+                resPos -= transform.up * Time.deltaTime * moveSpeed;
+            }
+            RaycastHit hit;
+            if (Physics.Raycast(resPos, transform.forward, out hit, Mathf.Infinity))
+            {
+                transform.position = resPos;
+            }
+            Debug.DrawLine(transform.position, transform.position + transform.forward * 100f, Color.black, 0.1f);
         }
-        if (Mathf.Abs(Input.mousePosition.x) <= detectLen || Input.GetKey(KeyCode.LeftArrow))
-        {
-            resPos -= transform.right * Time.deltaTime * moveSpeed;
-        }
-        if (Mathf.Abs(Input.mousePosition.y - Screen.height) <= detectLen || Input.GetKey(KeyCode.UpArrow))
-        {
-            resPos += transform.up * Time.deltaTime * moveSpeed;
-        }
-        if (Mathf.Abs(Input.mousePosition.y) <= detectLen || Input.GetKey(KeyCode.DownArrow))
-        {
-            resPos -= transform.up * Time.deltaTime * moveSpeed;
-        }
-        RaycastHit hit;
-        if (Physics.Raycast(resPos, transform.forward, out hit, Mathf.Infinity))
-        {
-            transform.position = resPos;
-        }
-        Debug.DrawLine(transform.position, transform.position + transform.forward * 100f, Color.black, 0.1f);
     }
 }
