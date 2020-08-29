@@ -77,10 +77,9 @@
     <Compile Include="Assets\Scripts\Character\PSkill.cs" />
     <Compile Include="Assets\Scripts\Character\Player.cs" />
     <Compile Include="Assets\Scripts\Character\Property.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\Dialogue.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\button.cs" />
     <Compile Include="Assets\Scripts\Dialogue\testdialog.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\utils\Dialogue.cs" />
     <Compile Include="Assets\Scripts\Dialogue\utils\TypeEffect.cs" />
     <Compile Include="Assets\Scripts\GameSystem\GameControl.cs" />
     <Compile Include="Assets\Scripts\GameSystem\GameSystem.cs" />
@@ -343,11 +342,11 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>F:/Study/Unity/UnityEditors/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="Excel">
-      <HintPath>F:/Test/git_rep/3D_TRPG/Assets/Plugins/Excel/Excel.dll</HintPath>
-    </Reference>
     <Reference Include="EPPlus">
       <HintPath>F:/Test/git_rep/3D_TRPG/Assets/Plugins/Excel/EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel">
+      <HintPath>F:/Test/git_rep/3D_TRPG/Assets/Plugins/Excel/Excel.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>F:/Test/git_rep/3D_TRPG/Assets/Plugins/Excel/ICSharpCode.SharpZipLib.dll</HintPath>

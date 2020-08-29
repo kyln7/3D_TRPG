@@ -52,6 +52,7 @@ public class Dialogue
             sentences.Add(sentence);
         }
 
+        Debug.Log("对话文件加载完毕。");
         return true;
     }
 }

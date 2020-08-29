@@ -12,7 +12,6 @@ public class TypeEffect : MonoBehaviour
     {
         //GameObject DialogBox = GameObject.Find("Canvas").transform.Find("DialogBox").gameObject;
         //生成对话框
-        DialogBox = Instantiate(DialogBox);
         DialogBox.transform.SetParent(GameObject.Find("Canvas").transform);
         DialogBox.GetComponent<RectTransform>().localPosition = new Vector3(0, -385, 0);
 
@@ -27,7 +26,7 @@ public class TypeEffect : MonoBehaviour
             yield return null;
             if (Input.GetMouseButtonDown(0))
             {
-                //Debug.Log("start Dialog!");
+                Debug.Log("start Dialog!");
                 if (i > dialogue.sentences.Count - 1) break;
 
                 NameText.text = dialogue.sentences[i].GetName();
@@ -55,35 +54,56 @@ public class TypeEffect : MonoBehaviour
                     LC.color = Color.gray;
                 }
 
-                Debug.Log(DialogBox.activeSelf);
-                //显示对话
-                yield return StartCoroutine(test());//TypeAsWrite(MainText,dialogue.sentences[i].GetContent(),textspeed));
+                Debug.Log(gameObject.name);
+                Debug.Log(gameObject.activeSelf);
+
+                /*
+                //打字机效果显示对话
+                int k = 0;
+                float timer = 0;
+                while (true)
+                {
+                    if (Input.GetMouseButtonDown(1)) {k = dialogue.sentences[i].GetContent().Length; }
+                    MainText.text = dialogue.sentences[i].GetContent().Substring(0, k);
+                    yield return null;
+                    timer += Time.deltaTime;
+                    if (timer > textspeed)
+                    {
+                        k += 1;
+                        timer = 0;
+                    }
+
+                    if (k > dialogue.sentences[i].GetContent().Length) break;
+                }*/
+                yield return TypeAsWrite(MainText,dialogue.sentences[i].GetContent(),textspeed);
                 i += 1;
             }
         }
         //DialogBox.SetActive(false);
         Destroy(DialogBox);
-
+        Debug.Log("end dialog");
     }
 
     //打字机效果
+    //speed指1秒显示多少字
     IEnumerator TypeAsWrite(Text textBox, string content, float speed)
     {
         int i = 0;
+        int length = content.Length;
         float timer = 0;
         while (true)
         {
-            if (Input.GetMouseButtonDown(1)) { /*Debug.Log("switch sen");*/ i = content.Length; }
+            if (Input.GetMouseButtonDown(1)) { /*Debug.Log("switch sen");*/ i = length; }
             textBox.text = content.Substring(0, i);
             yield return null;
             timer += Time.deltaTime;
-            if (timer > speed)
+            if (timer > 1/speed)
             {
                 i += 1;
                 timer = 0;
             }
 
-            if (i > content.Length) break;
+            if (i > length) break;
         }
     }
 
