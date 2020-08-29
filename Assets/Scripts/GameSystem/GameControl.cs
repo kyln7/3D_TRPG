@@ -12,11 +12,11 @@ public class GameControl : MonoBehaviour
     public Vector3 cursorPos;
 
     public Vector2 playersStartPos, playersEndPos;
-
     bool ifTouched = false;
 
     public static InputMode inputMode;
     public enum InputMode { UI, Game }
+    public DialogueManager dialogueManager;
 
     void Start()
     {
@@ -39,6 +39,7 @@ public class GameControl : MonoBehaviour
                 ifTouched = true;
                 GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
                 if (obj == null) return;
+                if (obj.CompareTag("cantMove")) return;
                 playersEndPos = new Vector2(Map.GetGridPos(obj)[0], Map.GetGridPos(obj)[1]);
             }
             if (ifTouched)
@@ -47,6 +48,21 @@ public class GameControl : MonoBehaviour
                 {
                     ifTouched = false;
                     playersStartPos = stopPos;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                List<Vector2Int> testList = GameSystem.GetRange(player.GetComponent<Player>().GetPos(), 1);
+                foreach (Vector2Int node in testList)
+                {
+                    Debug.DrawRay(new Vector3(node.x, -1, node.y), Vector3.up * 100f, Color.red, 100f);
+                    if (GameSystem.HasObjectOnGrid(node, "Npc"))
+                    {
+                        inputMode = InputMode.UI;
+                        dialogueManager = GameSystem.GetObjectOnGrid(node, "Npc").GetComponent<DialogueManager>();
+                        dialogueManager.StartDialog("1", 4);
+                        return;
+                    }
                 }
             }
         }

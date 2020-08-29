@@ -15,8 +15,8 @@ public class GameSystem : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
         {
-            Debug.DrawLine(ray.origin, hit.point, Color.red, 10f);
-            Debug.Log("Hit Name: " + hit.transform.name + " , Hit Position: " + hit.transform.position.ToString());
+            //Debug.DrawLine(ray.origin, hit.point, Color.red, 10f);
+            //Debug.Log("Hit Name: " + hit.transform.name + " , Hit Position: " + hit.transform.position.ToString());
             res = hit.transform.gameObject;
             return res;
         }
@@ -46,7 +46,7 @@ public class GameSystem : MonoBehaviour
     {
         int layer = LayerMask.GetMask(layerMask);
         RaycastHit hit;
-        Debug.DrawRay(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up * 100f, Color.red, 100f);
+        //Debug.DrawRay(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up * 100f, Color.red, 100f);
         if (Physics.Raycast(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up, out hit, Mathf.Infinity, layer))
         {
             return true;
@@ -59,7 +59,7 @@ public class GameSystem : MonoBehaviour
     {
         int layer = LayerMask.GetMask(layerMask);
         RaycastHit raycast;
-        Debug.DrawRay(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up * 100f, Color.red, 100f);
+        //Debug.DrawRay(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up * 100f, Color.red, 100f);
         if (Physics.Raycast(new Vector3(detectPos.x, -1, detectPos.y), Vector3.up, out raycast, Mathf.Infinity, layer))
         {
             return raycast.transform.gameObject;

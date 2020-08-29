@@ -80,4 +80,9 @@ public class Player : MonoBehaviour
             item.GetComponent<MeshRenderer>().material = df;
         }
     }
+
+    public Vector2Int GetPos()
+    {
+        return new Vector2Int((int)transform.position.x,(int)transform.position.z);
+    }
 }

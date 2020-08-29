@@ -97,7 +97,11 @@ public class AStarMove
         }
 
         moveVec = e - s;
-        if (moveVec.magnitude < 0.05f) return Status.Moved;
+        if (moveVec.magnitude < 0.05f)
+        {
+            gameObject.transform.position = e;
+            return Status.Moved;
+        }
         //Debug.Log("Length: " + moveVec.magnitude.ToString("0.0000"));
         moveVec = moveVec.normalized;
 
