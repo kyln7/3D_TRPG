@@ -99,22 +99,9 @@ public class Character : MonoBehaviour, IAgent
     }
 
     //todo
-    public void Talk(float time)
-    {
-        StartCoroutine(WaitTalk(time));
-    }
-
     IEnumerator WaitIdel(float time)
     {
-        Debug.Log("Waiting..");
-        canMove = false;
-        yield return new WaitForSeconds(time);
-        canMove = true;
-    }
-
-    IEnumerator WaitTalk(float time)
-    {
-        Debug.Log("Talking..");
+        //Debug.Log("Waiting..");
         canMove = false;
         yield return new WaitForSeconds(time);
         canMove = true;

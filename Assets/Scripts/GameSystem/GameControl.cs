@@ -61,6 +61,7 @@ public class GameControl : MonoBehaviour
                         inputMode = InputMode.UI;
                         dialogueManager = GameSystem.GetObjectOnGrid(node, "Npc").GetComponent<DialogueManager>();
                         dialogueManager.StartDialog("1", 4);
+                        GameSystem.GetObjectOnGrid(node, "Npc").GetComponent<Character>().AddTalkAction();
                         return;
                     }
                 }

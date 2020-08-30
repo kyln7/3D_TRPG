@@ -61,7 +61,7 @@ namespace TRpgAction
             if (doing == false)
             {
                 doing = true;
-                character.Idel(4);
+                character.Idel(10);
             }
             if (character.canMove) isDone = true;
         }
@@ -87,9 +87,8 @@ namespace TRpgAction
             if (doing == false)
             {
                 doing = true;
-                character.Talk(4);
             }
-            if (character.canMove) isDone = true;
+            if (GameControl.inputMode == GameControl.InputMode.Game) isDone = true;
         }
 
         public override void FinishAction(Character character)
