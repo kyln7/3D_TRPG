@@ -6,7 +6,7 @@ public class Shortcut : MonoBehaviour
 {
     bool moving = false;
     bool isDown = false;
-    float speed = 3;
+    float speed = 6;
     Vector3 start = new Vector3(0, 0, 0);
     Vector3 end = new Vector3(0, -160, 0);
     bool isOrder = false;
@@ -24,7 +24,6 @@ public class Shortcut : MonoBehaviour
         GameObject target = GameObject.Find("MenuSet");
         GameObject Status = GameObject.Find("Status");
         GameObject Order = GameObject.Find("Order");
-        GameObject Skills = GameObject.Find("Skills");
         if (Input.GetKeyDown(KeyCode.Space) && isDown==false && moving == false)
         {
             start = new Vector3(0, 0, 0);
@@ -44,7 +43,6 @@ public class Shortcut : MonoBehaviour
             if(isOrder == false)
             {
                 Status.transform.localPosition = new Vector3(-200, -570, 0);
-                Skills.transform.localPosition = new Vector3(-200, -570, 0);
                 Order.transform.localPosition = position;
                 isOrder = !isOrder;
             }
@@ -52,7 +50,6 @@ public class Shortcut : MonoBehaviour
             {
                 Status.transform.localPosition = position;
                 Order.transform.localPosition = new Vector3(-200, -570, 0);
-                Skills.transform.localPosition = new Vector3(-200, -570, 0);
                 isOrder = !isOrder;
             }
         }

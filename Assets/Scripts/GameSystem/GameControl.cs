@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TRpgMap;
-using TRpgSkill;
-using TRpgAction;
+
 public class GameControl : MonoBehaviour
 {
     public static GridArray Map;
@@ -36,11 +35,18 @@ public class GameControl : MonoBehaviour
             cursorSelect.position = cursorPos;
             if (Input.GetMouseButtonDown(0))
             {
-                ifTouched = true;
-                GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
-                if (obj == null) return;
-                if (obj.CompareTag("cantMove")) return;
-                playersEndPos = new Vector2(Map.GetGridPos(obj)[0], Map.GetGridPos(obj)[1]);
+                if (GameSystem.IsPointerOverGameObject(Input.mousePosition))
+                {
+                    inputMode = InputMode.UI;
+                }
+                else
+                {
+                    ifTouched = true;
+                    GameObject obj = GameSystem.GetGameObjectByMouse("Ground");
+                    if (obj == null) return;
+                    if (obj.CompareTag("cantMove")) return;
+                    playersEndPos = new Vector2(Map.GetGridPos(obj)[0], Map.GetGridPos(obj)[1]);
+                }
             }
             if (ifTouched)
             {

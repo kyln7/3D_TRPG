@@ -8,6 +8,7 @@ TagManager:
   - canMove
   - cantMove
   - Item
+  - DontDetectUI
   layers:
   - Default
   - TransparentFX

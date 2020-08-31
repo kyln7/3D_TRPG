@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SkillClick : MonoBehaviour
 {
-    Vector3 position = new Vector3(-200, -384, 0);
+    Vector3 position = new Vector3(0, 40, 0);
     void Start()
     {
         Button btn = this.GetComponent<Button>();
@@ -15,12 +15,12 @@ public class SkillClick : MonoBehaviour
 
     private void OnClick()
     {
-        GameObject Status = GameObject.Find("Status");
-        GameObject Order = GameObject.Find("Order");
         GameObject Skills = GameObject.Find("Skills");
-        Status.transform.localPosition = new Vector3(-200, -570, 0);
-        Order.transform.localPosition = new Vector3(-200, -570, 0);
+        GameObject Menu = GameObject.Find("Menu");
+        GameObject Items = GameObject.Find("ItemsMenu");
+        Items.transform.localPosition = new Vector3(0, 918, 0);
         Skills.transform.localPosition = position;
+        Menu.transform.localPosition = new Vector3(1000, 0, 0);
     }
 
 }
