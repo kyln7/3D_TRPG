@@ -85,4 +85,17 @@ public class Player : MonoBehaviour
     {
         return new Vector2Int((int)transform.position.x,(int)transform.position.z);
     }
+
+    public Skill GetInsight()
+    {
+        return s_inSight;
+    }
+    public Skill GetHit()
+    {
+        return s_hit;
+    }
+    public Skill GetThrow()
+    {
+        return s_throw;
+    }
 }

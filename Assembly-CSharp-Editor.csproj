@@ -317,17 +317,17 @@
  <Reference Include="UnityEditor.Android.Extensions">
  <HintPath>E:/Unity/2019.3.4f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="ICSharpCode.NRefactory">
- <HintPath>F:/Unity3D Projects/3D_TRPG/Library/PackageCache/com.unity.render-pipelines.core@7.4.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+ <Reference Include="EPPlus">
+ <HintPath>F:/Unity3D Projects/3D_TRPG/Assets/Plugins/Excel/EPPlus.dll</HintPath>
  </Reference>
  <Reference Include="Excel">
  <HintPath>F:/Unity3D Projects/3D_TRPG/Assets/Plugins/Excel/Excel.dll</HintPath>
  </Reference>
- <Reference Include="EPPlus">
- <HintPath>F:/Unity3D Projects/3D_TRPG/Assets/Plugins/Excel/EPPlus.dll</HintPath>
- </Reference>
  <Reference Include="ICSharpCode.SharpZipLib">
  <HintPath>F:/Unity3D Projects/3D_TRPG/Assets/Plugins/Excel/ICSharpCode.SharpZipLib.dll</HintPath>
+ </Reference>
+ <Reference Include="ICSharpCode.NRefactory">
+ <HintPath>F:/Unity3D Projects/3D_TRPG/Library/PackageCache/com.unity.render-pipelines.core@7.4.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>F:/Unity3D Projects/3D_TRPG/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

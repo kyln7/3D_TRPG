@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\UI\ReturnClick.cs" />
      <Compile Include="Assets\Scripts\UI\Shortcut.cs" />
      <Compile Include="Assets\Scripts\UI\SkillClick.cs" />
+     <Compile Include="Assets\Scripts\UI\SkillUI.cs" />
      <Compile Include="Assets\Scripts\UI\StatusClick.cs" />
      <Compile Include="Assets\Scripts\Utils\LabelAttribute\LabelAttribute.cs" />
      <Compile Include="Assets\Scripts\Utils\LabelAttribute\LabelAttributeDrawer.cs" />
