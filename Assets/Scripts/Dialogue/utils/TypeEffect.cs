@@ -8,6 +8,8 @@ public class TypeEffect : MonoBehaviour
     Image LC, RC;
     Text NameText, MainText;
 
+    bool flag = true;
+
     public IEnumerator StartDia(GameObject DialogBox, Dialogue dialogue, float textspeed)
     {
         //GameObject DialogBox = GameObject.Find("Canvas").transform.Find("DialogBox").gameObject;
@@ -24,9 +26,10 @@ public class TypeEffect : MonoBehaviour
         while (true)
         {
             yield return null;
-            if (Input.GetMouseButtonDown(0))
+            if (flag || Input.GetMouseButtonDown(0))
             {
-                Debug.Log("start Dialog!");
+                flag = false;
+                //Debug.Log("start Dialog!");
                 if (i > dialogue.sentences.Count - 1) break;
 
                 NameText.text = dialogue.sentences[i].GetName();
@@ -54,34 +57,13 @@ public class TypeEffect : MonoBehaviour
                     LC.color = Color.gray;
                 }
 
-                Debug.Log(gameObject.name);
-                Debug.Log(gameObject.activeSelf);
-
-                /*
-                //打字机效果显示对话
-                int k = 0;
-                float timer = 0;
-                while (true)
-                {
-                    if (Input.GetMouseButtonDown(1)) {k = dialogue.sentences[i].GetContent().Length; }
-                    MainText.text = dialogue.sentences[i].GetContent().Substring(0, k);
-                    yield return null;
-                    timer += Time.deltaTime;
-                    if (timer > textspeed)
-                    {
-                        k += 1;
-                        timer = 0;
-                    }
-
-                    if (k > dialogue.sentences[i].GetContent().Length) break;
-                }*/
                 yield return TypeAsWrite(MainText,dialogue.sentences[i].GetContent(),textspeed);
                 i += 1;
             }
         }
-        //DialogBox.SetActive(false);
         Destroy(DialogBox);
-        Debug.Log("end dialog");
+        flag = true;
+        //Debug.Log("end dialog");
     }
 
     //打字机效果
