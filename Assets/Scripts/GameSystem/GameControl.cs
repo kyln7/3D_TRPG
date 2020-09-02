@@ -50,7 +50,7 @@ public class GameControl : MonoBehaviour
             }
             if (ifTouched)
             {
-                if (AStarMove.GetInstance().Move(player, Map.gridArray, playersStartPos, playersEndPos, out Vector2 stopPos))
+                if (AStarMove.GetInstance().Move(player, Map, playersStartPos, playersEndPos, out Vector2 stopPos))
                 {
                     ifTouched = false;
                     playersStartPos = stopPos;

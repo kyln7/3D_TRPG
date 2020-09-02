@@ -39,7 +39,7 @@ public class testmove : MonoBehaviour
 
         if (ifTouched)
         {
-            if (AStarMove.GetInstance().Move(moveObj, mapData.gridArray, startPos, endPos, out Vector2 stopPos))
+            if (AStarMove.GetInstance().Move(moveObj, mapData, startPos, endPos, out Vector2 stopPos))
             {
                 ifTouched = false;
                 startPos = stopPos;

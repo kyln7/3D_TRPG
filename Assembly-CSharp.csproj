@@ -56,11 +56,16 @@
      <Compile Include="Assets\Scripts\Action\ActionManager.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
      <Compile Include="Assets\Scripts\Character\Character.cs" />
+     <Compile Include="Assets\Scripts\Character\NPC.cs" />
+     <Compile Include="Assets\Scripts\Character\PSkill.cs" />
      <Compile Include="Assets\Scripts\Character\Player.cs" />
+     <Compile Include="Assets\Scripts\Character\Property.cs" />
      <Compile Include="Assets\Scripts\Dialogues\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\Dialogues\testdialog.cs" />
      <Compile Include="Assets\Scripts\Dialogues\utils\Dialogue.cs" />
      <Compile Include="Assets\Scripts\Dialogues\utils\TypeEffect.cs" />
+     <Compile Include="Assets\Scripts\DicePoint\DicePoint.cs" />
+     <Compile Include="Assets\Scripts\DicePoint\TestDice.cs" />
      <Compile Include="Assets\Scripts\GameSystem\GameControl.cs" />
      <Compile Include="Assets\Scripts\GameSystem\GameSystem.cs" />
      <Compile Include="Assets\Scripts\Item\Item.cs" />

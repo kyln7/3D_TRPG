@@ -33,7 +33,7 @@ namespace TRpgAction
             {
                 startPos = new Vector2Int(character.curPos.x, character.curPos.y);
             }
-            if (aStarMove.Move(character.gameObject, mapData.gridArray, startPos, endPos, out Vector2 stopPos)) isDone = true;
+            if (aStarMove.Move(character.gameObject, mapData, startPos, endPos, out Vector2 stopPos)) isDone = true;
         }
         public override void FinishAction(Character character)
         {
