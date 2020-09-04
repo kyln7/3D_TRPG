@@ -12,7 +12,7 @@ public class ReturnClick : MonoBehaviour
 
     }
 
-    private void OnClick()
+    public void OnClick()
     {
         GameObject Skills = GameObject.Find("Skills");
         GameObject Menu = GameObject.Find("Menu");

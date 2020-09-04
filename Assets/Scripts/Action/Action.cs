@@ -26,7 +26,7 @@ namespace TRpgAction
         public Vector2 startPos;
         public GridArray mapData;
         public Vector2 stopPos;
-        public AStarMove aStarMove;
+        public AStarMoveNpc aStarMove;
         public override void DoAction(Character character)
         {
             if (!aStarMove.ifGetPath)
@@ -50,7 +50,7 @@ namespace TRpgAction
             doing = false;
             ActionName = "MoveAction";
             endPos = pos;
-            aStarMove = AStarMove.GetInstance();
+            aStarMove = AStarMoveNpc.GetInstance();
         }
     }
 

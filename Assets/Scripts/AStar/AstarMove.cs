@@ -122,10 +122,11 @@ public class AStarMove
         Vector3 e = new Vector3(targetGrid.x, s.y, targetGrid.z);
 
         string BlockLayer = "";
-        if (user == User.Player) BlockLayer = "Npc";
-        else if (user == User.NPC) BlockLayer = "Interactable";
-
-        if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), BlockLayer))
+        if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Item"))
+        {
+            return Status.Interrupt;
+        }
+        if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Npc"))
         {
             return Status.Interrupt;
         }

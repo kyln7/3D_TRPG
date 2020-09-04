@@ -37,15 +37,25 @@ namespace TRpgSkill
 
         public override List<Vector2Int> GetScope()
         {
-            throw new System.NotImplementedException();
+            Vector2Int playerPos = new Vector2Int((int)Owner.transform.position.x, (int)Owner.transform.position.z);
+            TRpgMap.GridArray gridArray = GameControl.Map;
+            List<Vector2Int> temp = new List<Vector2Int>();
+            List<Vector2Int> res = new List<Vector2Int>();
+            temp = GameSystem.GetRange(playerPos, 1);
+            foreach (Vector2Int tempNode in temp)
+            {
+                Vector2Int node = gridArray.GetGridPos(tempNode);
+                if (gridArray.gridArray[node.x, node.y].canMove)
+                {
+                    res.Add(tempNode);
+                }
+            }
+            return res;
         }
 
         public override bool IsActive()
         {
-            Vector2Int pos = new Vector2Int((int)Owner.transform.position.x, (int)Owner.transform.position.z);
-            List<Vector2Int> nodes = GameSystem.GetRange(pos, Range);
-            if (GameSystem.HasObjectOnGrids(nodes, "Npc")) return true;
-            else return false;
+            return true;
         }
 
         public override void Use()
@@ -237,4 +247,55 @@ namespace TRpgSkill
         }
     }
 
+    public class Check : Skill
+    {
+        public Check(GameObject owner)
+        {
+            Owner = owner;
+            SkillName = "查询";
+            SkillInfo = "扫描对象...";
+            Range = 1;
+        }
+
+        public override List<Vector2Int> GetScope()
+        {
+            Vector2Int playerPos = new Vector2Int((int)Owner.transform.position.x, (int)Owner.transform.position.z);
+            TRpgMap.GridArray gridArray = GameControl.Map;
+            List<Vector2Int> temp = new List<Vector2Int>();
+            List<Vector2Int> res = new List<Vector2Int>();
+            temp = GameSystem.GetRange(playerPos, 1);
+            foreach (Vector2Int tempNode in temp)
+            {
+                Vector2Int node = gridArray.GetGridPos(tempNode);
+                if (gridArray.gridArray[node.x, node.y].canMove)
+                {
+                    res.Add(tempNode);
+                }
+            }
+            return res;
+        }
+
+        public override bool IsActive()
+        {
+            return true;
+        }
+
+        public override void Use()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Use(Character character)
+        {
+            //todo
+            //计算伤害--投骰子[GameControl.RollDice()]
+            //character.ReceiveDmg(character);
+            //character.Play("receiveDmg");
+        }
+
+        public override void Use(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

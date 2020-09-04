@@ -43,7 +43,10 @@ public class Character : MonoBehaviour, IAgent
     void Update()
     {
         curPos = GetPos();
-        m_FSM.Update();
+        if (GameControl.inputMode == GameControl.InputMode.Game)
+        {
+            m_FSM.Update();
+        }
     }
 
     //获取当前对象在地图数组中的位置

@@ -12,37 +12,47 @@ public class Player : MonoBehaviour
     public Skill s_inSight;
     public Skill s_hit;
     public Skill s_throw;
+    public Skill s_check;
+    public Skill usingSkill;
+    public List<Item> itemList;
     //todo
     // Start is called before the first frame update
     void Start()
     {
         skillManager = GetComponent<SkillManager>();
         SetActiveSkills();
+        itemList = new List<Item>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //set skills after enter in a new room or whenever need re-detect active skills
     public void SetActiveSkills()
     {
         skills = skillManager.GetActiveSkills();
-        foreach(Skill skill in skills)
+        foreach (Skill skill in skills)
         {
-            if(skill is Insight) s_inSight = skill;
-            if(skill is Hit) s_hit = skill;
-            if(skill is Throw) s_throw = skill;
+            if (skill is Insight) s_inSight = skill;
+            if (skill is Hit) s_hit = skill;
+            if (skill is Throw) s_throw = skill;
+            if (skill is Check) s_check = skill;
         }
     }
 
+
+    public void SetSkillScope(Skill skill)
+    {
+        skillScope = skill.GetScope();
+    }
     //show blue area of the skill Scope
     public void ShowScope(Skill skill)
     {
         skillScope = skill.GetScope();
-        foreach(Vector2Int node in skillScope)
+        foreach (Vector2Int node in skillScope)
         {
             GameSystem.GetObjectOnGrid(node, "Ground").transform.Find("select").gameObject.SetActive(true);
         }
@@ -52,7 +62,7 @@ public class Player : MonoBehaviour
     public void FinishShowScope(Skill skill)
     {
         skillScope = skill.GetScope();
-        foreach(Vector2Int node in skillScope)
+        foreach (Vector2Int node in skillScope)
         {
             GameSystem.GetObjectOnGrid(node, "Ground").transform.Find("select").gameObject.SetActive(false);
         }
@@ -64,7 +74,7 @@ public class Player : MonoBehaviour
         Material outline = Resources.Load<Material>("Materials/Outline");
         List<GameObject> items = new List<GameObject>();
         items = insight.GetItems();
-        foreach(GameObject item in items)
+        foreach (GameObject item in items)
         {
             item.GetComponent<MeshRenderer>().material = outline;
         }
@@ -75,7 +85,7 @@ public class Player : MonoBehaviour
         Material df = Resources.Load<Material>("Materials/Default");
         List<GameObject> items = new List<GameObject>();
         items = insight.GetItems();
-        foreach(GameObject item in items)
+        foreach (GameObject item in items)
         {
             item.GetComponent<MeshRenderer>().material = df;
         }
@@ -83,7 +93,7 @@ public class Player : MonoBehaviour
 
     public Vector2Int GetPos()
     {
-        return new Vector2Int((int)transform.position.x,(int)transform.position.z);
+        return new Vector2Int((int)transform.position.x, (int)transform.position.z);
     }
 
     public Skill GetInsight()
@@ -97,5 +107,9 @@ public class Player : MonoBehaviour
     public Skill GetThrow()
     {
         return s_throw;
+    }
+    public Skill GetCheck()
+    {
+        return s_check;
     }
 }
