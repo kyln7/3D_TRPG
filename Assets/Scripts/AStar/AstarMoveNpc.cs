@@ -125,11 +125,11 @@ public class AStarMoveNpc
         {
             return Status.Interrupt;
         }
-        if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Npc"))
-        {
-            if (GameSystem.GetObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Npc") != gameObject)
-                return Status.Interrupt;
-        }
+        // if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Npc"))
+        // {
+        //     if (GameSystem.GetObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Npc") != gameObject)
+        //         return Status.Interrupt;
+        // }
         if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Interactable"))
         {
             return Status.Interrupt;

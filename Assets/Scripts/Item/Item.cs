@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public int id;
     [SerializeField]
     //Name of the Item
     private string itemName;

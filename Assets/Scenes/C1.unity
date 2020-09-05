@@ -8368,6 +8368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d41cedd9cfb8e41a6b3817373b6986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   itemName: "\u77F3\u5934"
   durability: 0
   priority: 0
@@ -12100,6 +12101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d41cedd9cfb8e41a6b3817373b6986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   itemName: "\u6728\u5934"
   durability: 5
   priority: 0
@@ -15529,7 +15531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654706410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 2, z: 12}
+  m_LocalPosition: {x: 16, y: 1, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1636956785}
@@ -25481,6 +25483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d41cedd9cfb8e41a6b3817373b6986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   itemName: 
   durability: 0
   priority: 0
@@ -31536,7 +31539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1353324791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49953,6 +49956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21eac2bd6edda8c47984dcb9ac56e73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newObj: {fileID: 7304485660436385015, guid: bad34946499e6bc4bb168e76b4151366, type: 3}
 --- !u!1 &2052993318
 GameObject:
   m_ObjectHideFlags: 0
@@ -50404,6 +50408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d41cedd9cfb8e41a6b3817373b6986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   itemName: "\u6563\u5F39\u67AA"
   durability: 30
   priority: 0
@@ -53577,7 +53582,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6040656017392066430}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6040656017392066420}
+        m_MethodName: GetObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6040656017392066419
 GameObject:
   m_ObjectHideFlags: 0
@@ -53590,13 +53606,28 @@ GameObject:
   - component: {fileID: 6040656017392066431}
   - component: {fileID: 6040656017392066430}
   - component: {fileID: 6040656017392066417}
+  - component: {fileID: 6040656017392066420}
   m_Layer: 5
-  m_Name: Communication
+  m_Name: Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6040656017392066420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040656017392066419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57bc7fbfbc3ffd344892c1dec512eb7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1980158862}
+  skillName: Check
 --- !u!114 &6040656017392066430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55167,6 +55198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21eac2bd6edda8c47984dcb9ac56e73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newObj: {fileID: 7304485660436385015, guid: bad34946499e6bc4bb168e76b4151366, type: 3}
 --- !u!114 &6040656018112195634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55265,7 +55297,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6040656018112195634}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6040656018112195633}
+        m_MethodName: ShowItemUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6040656018112195639
 GameObject:
   m_ObjectHideFlags: 0

@@ -78,11 +78,13 @@
      <Compile Include="Assets\Scripts\Testing.cs" />
      <Compile Include="Assets\Scripts\TimeSystem\TimeSystem.cs" />
      <Compile Include="Assets\Scripts\UI\ItemClick.cs" />
+     <Compile Include="Assets\Scripts\UI\ItemUse.cs" />
      <Compile Include="Assets\Scripts\UI\MenuClick.cs" />
      <Compile Include="Assets\Scripts\UI\PauseClick.cs" />
      <Compile Include="Assets\Scripts\UI\PauseReturn.cs" />
      <Compile Include="Assets\Scripts\UI\ReturnClick.cs" />
      <Compile Include="Assets\Scripts\UI\Shortcut.cs" />
+     <Compile Include="Assets\Scripts\UI\SingleItemClick.cs" />
      <Compile Include="Assets\Scripts\UI\SkillClick.cs" />
      <Compile Include="Assets\Scripts\UI\SkillUI.cs" />
      <Compile Include="Assets\Scripts\UI\StatusClick.cs" />

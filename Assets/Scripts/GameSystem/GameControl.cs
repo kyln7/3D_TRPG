@@ -51,8 +51,10 @@ public class GameControl : MonoBehaviour
             }
             if (ifTouched)
             {
+                Player.isMoving = true;
                 if (AStarMove.GetInstance().Move(player, Map, playersStartPos, playersEndPos, out Vector2 stopPos))
                 {
+                    Player.isMoving = false;
                     ifTouched = false;
                     playersStartPos = stopPos;
                 }
@@ -127,9 +129,8 @@ public class GameControl : MonoBehaviour
                                 var res = DicePoint.Instance.BlurCheckTwo(player, hitObj, 0);
                                 if (res.Item1 == 0)
                                 {
+                                    Debug.Log("hit"+hitObj.gameObject.name);
                                     if (res.Item2 == DiceResult.Success) hitObj.GetComponent<NPC>().p.HP -= 10;
-                                    if (res.Item2 == DiceResult.BigSuccess) hitObj.GetComponent<NPC>().p.HP -= 20;
-                                    if (res.Item2 == DiceResult.HardSuccess) hitObj.GetComponent<NPC>().p.HP -= 5;
                                 }
                                 player.GetComponent<Player>().FinishShowScope(skill);
                                 inputMode = InputMode.Game;

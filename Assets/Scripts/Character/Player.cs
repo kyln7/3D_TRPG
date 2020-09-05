@@ -15,10 +15,12 @@ public class Player : MonoBehaviour
     public Skill s_check;
     public Skill usingSkill;
     public List<Item> itemList;
+    public static bool isMoving;
     //todo
     // Start is called before the first frame update
     void Start()
     {
+        isMoving = false;
         skillManager = GetComponent<SkillManager>();
         SetActiveSkills();
         itemList = new List<Item>();
