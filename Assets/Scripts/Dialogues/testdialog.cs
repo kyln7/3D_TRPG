@@ -9,8 +9,8 @@ public class testdialog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        t = gameObject.GetComponent<DialogueManager>();
-        t.StartDialog("1",5);
+        t = gameObject.AddComponent<DialogueManager>();
+        //t.StartDialog("2",5);
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class testdialog : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             i += 5;
-            t.StartDialog("1",5+i);
+            t.StartDialog("2",5+i);
         }
     }
 }

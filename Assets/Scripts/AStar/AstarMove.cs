@@ -120,8 +120,6 @@ public class AStarMove
         Grid targetGrid = aStar.map[(int)path[num].x, (int)path[num].y];
         Vector3 s = gameObject.transform.position;
         Vector3 e = new Vector3(targetGrid.x, s.y, targetGrid.z);
-
-        string BlockLayer = "";
         if (GameSystem.HasObjectOnGrid(new Vector2Int((int)e.x, (int)e.z), "Item"))
         {
             return Status.Interrupt;

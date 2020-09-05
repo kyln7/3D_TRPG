@@ -34,8 +34,8 @@ public class Dialogue
         }
 
         //预加载图片
-        string PicToBeLoad = result.Tables[0].Rows[0][1].ToString();
-        //Debug.Log(result.Tables[0].Rows[0][1]);
+        string PicToBeLoad = result.Tables[0].Rows[0][2].ToString();
+        //Debug.Log(result.Tables[0].Rows[0][0]);
         string[] pnames = PicToBeLoad.Split(',');
         for (int i = 0; i < pnames.Length; i++)
         {
@@ -46,9 +46,12 @@ public class Dialogue
 
         for (int i = 2; i < result.Tables[0].Rows.Count; i++)
         {
+            
             DataRow sentenceText = result.Tables[0].Rows[i];
-            Sentence sentence = new Sentence(sentenceText[0].ToString(), sentenceText[1].ToString(),
-                                             sentenceText[2].ToString(), sentenceText[3].ToString());
+            Sentence sentence = new Sentence(sentenceText[1].ToString(), sentenceText[2].ToString(),
+                                             sentenceText[3].ToString(), sentenceText[4].ToString(),
+                                             sentenceText[5].ToString(), sentenceText[6].ToString(),
+                                             sentenceText[7].ToString());
             sentences.Add(sentence);
         }
 
@@ -64,9 +67,12 @@ public class Sentence
     string speaker;
     string content;
     List<string> picnames;
+    SenType senType;
+    List<int> skipto;
+    List<int> itemid;
 
     public Sentence() { }
-    public Sentence(string n, string s, string c, string picset)
+    public Sentence(string n, string s, string c, string picset, string type, string skip, string items)
     {
         name = n;
         speaker = s;
@@ -78,11 +84,37 @@ public class Sentence
         {
             picnames.Add(tmp[i]);
         }
+         
+        switch (type)
+        {
+            case "0": senType = SenType.normal;break;
+            case "1": senType = SenType.branch;break;
+            case "2": senType = SenType.UseItem; break;
+        }
+
+        skipto = new List<int>();
+        string[] t = skip.Split(',');
+        foreach (string t0 in t) skipto.Add(int.Parse(t0));
+
+        itemid = new List<int>();
+        string[] k = items.Split(',');
+        foreach (string k0 in k) itemid.Add(int.Parse(k0));
+
+        //Debug.Log("跳过：" + skipto.Count);
     }
 
     public string GetName() { return name; }
     public string GetSpeaker() { return speaker; }
     public string GetContent() { return content; }
     public List<string> GetPicnames() { return picnames; }
+    public SenType GetSenType() { return senType; }
+    public List<int> GetSkipTo() { return skipto; }
+    public List<int> GetItemId() { return itemid; }
 }
 
+public enum SenType
+{
+    normal,
+    branch,
+    UseItem
+}

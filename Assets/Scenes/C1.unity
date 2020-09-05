@@ -8986,6 +8986,7 @@ MonoBehaviour:
   cursorPos: {x: 0, y: 0, z: 0}
   playersStartPos: {x: 0, y: 0}
   playersEndPos: {x: 0, y: 0}
+  itemUse: {fileID: 6040656017853231010}
   dialogueManager: {fileID: 654706416}
 --- !u!4 &384466499
 Transform:
@@ -12510,7 +12511,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD\u7269\u54C1\u4ECB\u7ECD"
+  m_Text: 
 --- !u!222 &510649596
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22673,7 +22674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c9ce7164c24afc47be948a101ec1186, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -37998,7 +37999,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7269\u54C1\u540D"
+  m_Text: 
 --- !u!222 &1574938140
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -54618,6 +54619,7 @@ GameObject:
   - component: {fileID: 6040656017853231020}
   - component: {fileID: 6040656017853231023}
   - component: {fileID: 6040656017853231022}
+  - component: {fileID: 6040656017853231010}
   m_Layer: 5
   m_Name: Use
   m_TagString: Untagged
@@ -54645,6 +54647,19 @@ RectTransform:
   m_AnchoredPosition: {x: 179, y: -232}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6040656017853231010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040656017853231008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba842b1cb4ad97f4e9c19cceb5462c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemClick: {fileID: 2051215667}
 --- !u!222 &6040656017853231020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -55198,7 +55213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21eac2bd6edda8c47984dcb9ac56e73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newObj: {fileID: 7304485660436385015, guid: bad34946499e6bc4bb168e76b4151366, type: 3}
+  newObj: {fileID: 0}
 --- !u!114 &6040656018112195634
 MonoBehaviour:
   m_ObjectHideFlags: 0

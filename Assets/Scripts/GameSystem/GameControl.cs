@@ -13,7 +13,7 @@ public class GameControl : MonoBehaviour
 
     public Vector2 playersStartPos, playersEndPos;
     bool ifTouched = false;
-
+    public ItemUse itemUse;
     public static InputMode inputMode;
     public enum InputMode { UI, Game, SelectObj }
     public DialogueManager dialogueManager;
@@ -59,7 +59,7 @@ public class GameControl : MonoBehaviour
                     playersStartPos = stopPos;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 List<Vector2Int> testList = GameSystem.GetRange(player.GetComponent<Player>().GetPos(), 1);
                 foreach (Vector2Int node in testList)
@@ -69,7 +69,7 @@ public class GameControl : MonoBehaviour
                     {
                         inputMode = InputMode.UI;
                         dialogueManager = GameSystem.GetObjectOnGrid(node, "Npc").GetComponent<DialogueManager>();
-                        dialogueManager.StartDialog("1", 4);
+                        dialogueManager.StartDialog("2", 10);
                         GameSystem.GetObjectOnGrid(node, "Npc").GetComponent<Character>().AddTalkAction();
                         return;
                     }
@@ -126,14 +126,19 @@ public class GameControl : MonoBehaviour
                             }
                             if (hitObj != null)
                             {
-                                var res = DicePoint.Instance.BlurCheckTwo(player, hitObj, 0);
-                                if (res.Item1 == 0)
+                                if (player.GetComponent<Player>().itemList.Count > 0)
+                                    itemUse.SetPara(player, hitObj, skill);
+                                else
                                 {
-                                    Debug.Log("hit"+hitObj.gameObject.name);
-                                    if (res.Item2 == DiceResult.Success) hitObj.GetComponent<NPC>().p.HP -= 10;
+                                    var res = DicePoint.Instance.BlurCheckTwo(player, hitObj, 0);
+                                    if (res.Item1 == 0)
+                                    {
+                                        Debug.Log("hit" + hitObj.gameObject.name);
+                                        if (res.Item2 == DiceResult.Success) hitObj.GetComponent<NPC>().p.HP -= (10);
+                                    }
+                                    player.GetComponent<Player>().FinishShowScope(skill);
+                                    GameControl.inputMode = GameControl.InputMode.Game;
                                 }
-                                player.GetComponent<Player>().FinishShowScope(skill);
-                                inputMode = InputMode.Game;
                             }
                         }
                     }
