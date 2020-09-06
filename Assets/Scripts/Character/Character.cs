@@ -4,9 +4,11 @@ using UnityEngine;
 using TrpgAI;
 using TRpgAction;
 using TRpgMap;
+using TMPro;
 
 public class Character : MonoBehaviour, IAgent
 {
+    public TextMeshPro hptext;
     public Transform[] randomMovePos;
     //public GridArray Map;
     public int Strenth = 10;
@@ -47,6 +49,7 @@ public class Character : MonoBehaviour, IAgent
         {
             m_FSM.Update();
         }
+        hptext.text = "HP: " + gameObject.GetComponent<NPC>().p.HP;
     }
 
     //获取当前对象在地图数组中的位置

@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class ReturnClick : MonoBehaviour
 {
+    public static bool isHit;
+    public ItemUse itemUse;
     void Start()
     {
+        isHit = false;
         Button btn = this.GetComponent<Button>();
         btn.onClick.AddListener(OnClick);
 
@@ -31,10 +34,14 @@ public class ReturnClick : MonoBehaviour
         foreach (Item item in items)
         {
             GameObject newItemD = GameObject.Find(item.ItemName + "1");
-            if(newItemD!=null)
+            if (newItemD != null)
             {
                 Destroy(newItemD);
             }
+        }
+        if (isHit)
+        {
+            itemUse.NoItemAttack();
         }
     }
 
@@ -57,7 +64,7 @@ public class ReturnClick : MonoBehaviour
         foreach (Item item in items)
         {
             GameObject newItemD = GameObject.Find(item.ItemName + "1");
-            if(newItemD!=null)
+            if (newItemD != null)
             {
                 Destroy(newItemD);
             }

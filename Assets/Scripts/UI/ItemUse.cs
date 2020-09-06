@@ -8,9 +8,11 @@ public class ItemUse : MonoBehaviour
     private GameObject player, hitObj;
     private Skill skill;
     public ItemClick itemClick;
+    public bool isHit;
     // Start is called before the first frame update
     void Start()
     {
+        isHit = false;
         Button btn = this.GetComponent<Button>();
         btn.onClick.AddListener(OnClick);
     }
@@ -30,15 +32,18 @@ public class ItemUse : MonoBehaviour
                 {
                     case "木头":
                         //使用木头的情况\
-                        UseItemToAttack(item);
+                        if (isHit)
+                            UseItemToAttack(item);
                         break;
                     case "石头":
                         //使用石头的情况
-                        UseItemToAttack(item);
+                        if (isHit)
+                            UseItemToAttack(item);
                         break;
                     case "散弹枪":
                         //使用散弹枪的情况
-                        UseItemToAttack(item);
+                        if (isHit)
+                            UseItemToAttack(item);
                         break;
                 }
             }
@@ -50,6 +55,8 @@ public class ItemUse : MonoBehaviour
         hitObj = h;
         skill = s;
         itemClick.ShowItemUI();
+        ReturnClick.isHit = true;
+        isHit = true;
     }
     public void UseItemToAttack(Item item)
     {
@@ -62,6 +69,21 @@ public class ItemUse : MonoBehaviour
         player.GetComponent<Player>().FinishShowScope(skill);
         GameControl.inputMode = GameControl.InputMode.Game;
         ReturnClick.Return();
+        ReturnClick.isHit = false;
+        isHit = false;
+    }
+    public void NoItemAttack()
+    {
+        var res = DicePoint.Instance.BlurCheckTwo(player, hitObj, 0);
+        if (res.Item1 == 0)
+        {
+            Debug.Log("hit" + hitObj.gameObject.name);
+            if (res.Item2 == DiceResult.Success) hitObj.GetComponent<NPC>().p.HP -= (10);
+        }
+        player.GetComponent<Player>().FinishShowScope(skill);
+        GameControl.inputMode = GameControl.InputMode.Game;
+        ReturnClick.Return();
+        isHit = false;
     }
 
     public void ShowSelectItemUI()
